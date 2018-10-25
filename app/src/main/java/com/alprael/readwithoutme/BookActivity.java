@@ -165,3 +165,17 @@ public class BookActivity extends AppCompatActivity {
 
 
 }
+
+/**
+ * get book
+ * put book in database
+ * have app access book through button press
+ * Have the book as a scrollable interface
+ * have a timer that times length of the book being open
+ * have a button that exits from the book
+ * make quiz for book
+ * put quiz in database
+ * have a new page that leads to a quiz on that book when book is finished reading.
+ * close quiz when done.
+ *
+ */
