@@ -1,4 +1,4 @@
-package com.alprael.readwithoutme.database;
+package com.alprael.readwithoutme.model.database;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -7,6 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import com.alprael.readwithoutme.R;
 
 @Database(entities = {Book.class}, version = 1, exportSchema = true)
 public abstract class BookDatabase extends RoomDatabase {
@@ -17,7 +18,7 @@ public abstract class BookDatabase extends RoomDatabase {
 
   public static synchronized BookDatabase getInstance(Context context) {
     if (instance == null) {
-      instance = Room.databaseBuilder(context.getApplicationContext(),
+      instance = Room.databaseBuilder(context,
           BookDatabase.class, DATABASE_NAME)
           .addCallback(new Callback(context.getApplicationContext()))
           .build();
@@ -62,7 +63,8 @@ public abstract class BookDatabase extends RoomDatabase {
       BookDao dao = db.getBookDao();
       Book book = new Book();
       book.setBookName("This Book is Green");
-      book.setFileName("TheGreenBook.txt");
+      book.setId(1);
+      book.getFileName();
       dao.insert(book);
       forgetInstance(context);
       return null;

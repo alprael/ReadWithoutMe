@@ -1,4 +1,4 @@
-package com.alprael.readwithoutme.database;
+package com.alprael.readwithoutme.model.database;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
