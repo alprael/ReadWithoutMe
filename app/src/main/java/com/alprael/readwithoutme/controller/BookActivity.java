@@ -3,8 +3,12 @@ package com.alprael.readwithoutme.controller;
 import android.arch.persistence.db.SupportSQLiteOpenHelper;
 import android.arch.persistence.room.DatabaseConfiguration;
 import android.arch.persistence.room.InvalidationTracker;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,21 +25,21 @@ public class BookActivity extends AppCompatActivity {
 
   private ImageButton imageButton;
   private Button button;
-  private BookDatabase database;
   private Book book;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_book);
-    database = BookDatabase.getInstance(getApplicationContext());
-    database.getBookDao();
+
 
     imageButton = (ImageButton) findViewById(R.id.imageButton1);
     imageButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-
+        FragmentTransaction f = getSupportFragmentManager().beginTransaction();
+        f.replace(R.id.frag_container, new BookFragment());
+        f.commit();
       }
     });
 
@@ -43,7 +47,9 @@ public class BookActivity extends AppCompatActivity {
     button.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-
+        FragmentTransaction f = getSupportFragmentManager().beginTransaction();
+        f.replace(R.id.frag_container, new BookFragment());
+        f.commit();
       }
     });
   }

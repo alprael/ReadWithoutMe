@@ -64,7 +64,6 @@ public abstract class BookDatabase extends RoomDatabase {
       Book book = new Book();
       book.setBookName("This Book is Green");
       book.setId(1);
-      book.getFileName();
       dao.insert(book);
       forgetInstance(context);
       return null;

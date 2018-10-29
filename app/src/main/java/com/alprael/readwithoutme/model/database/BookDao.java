@@ -11,26 +11,26 @@ import java.util.List;
 @Dao
 public interface BookDao {
 
-  @Insert(onConflict = OnConflictStrategy.FAIL)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   long insert(Book book);
 
-  @Insert(onConflict = OnConflictStrategy.FAIL)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   List<Long> insert(Book... books);
 
 
-  @Insert(onConflict = OnConflictStrategy.FAIL)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   List<Long> insert(List<Book> books);
 
   @Query("SELECT * FROM books ORDER BY book_name ASC")
   List<Book> select();
 
-  @Update(onConflict = OnConflictStrategy.FAIL)
+  @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(Book books);
 
-  @Update(onConflict = OnConflictStrategy.FAIL)
+  @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(Book... books);
 
-  @Update(onConflict = OnConflictStrategy.FAIL)
+  @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(List<Book> books);
 
   @Delete

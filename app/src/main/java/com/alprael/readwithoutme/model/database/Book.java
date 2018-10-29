@@ -13,18 +13,6 @@ import android.support.annotation.NonNull;
 )
 public class Book {
 
-  @NonNull
-  @ColumnInfo(name = "file_name")
-  private String fileName;
-
-  public String getFileName() {
-    return fileName;
-  }
-
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
-  }
-
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "book_id")
   private long id;
