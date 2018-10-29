@@ -18,6 +18,12 @@ public class Book {
   private long id;
 
   @NonNull
+  @ColumnInfo
+  private String fileName;
+
+
+
+  @NonNull
   @ColumnInfo(name = "book_name", collate = ColumnInfo.NOCASE)
   private String BookName;
 
@@ -36,5 +42,14 @@ public class Book {
 
   public void setBookName(@NonNull String bookName) {
     this.BookName = bookName;
+  }
+
+  @NonNull
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(@NonNull String fileName) {
+    this.fileName = fileName;
   }
 }

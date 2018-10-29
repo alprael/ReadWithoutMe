@@ -7,7 +7,6 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import com.alprael.readwithoutme.R;
 
 @Database(entities = {Book.class}, version = 1, exportSchema = true)
 public abstract class BookDatabase extends RoomDatabase {
@@ -63,7 +62,7 @@ public abstract class BookDatabase extends RoomDatabase {
       BookDao dao = db.getBookDao();
       Book book = new Book();
       book.setBookName("This Book is Green");
-      book.setId(1);
+      book.setFileName("greenbook.html");
       dao.insert(book);
       forgetInstance(context);
       return null;

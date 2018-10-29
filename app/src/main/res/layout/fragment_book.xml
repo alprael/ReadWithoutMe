@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-  android:id="@+id/fragment_book"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/fragment_book"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".controller.BookFragment"
-  android:background="#000">
+  android:background="#2F4F4F"
+  android:orientation="vertical"
+  tools:context=".controller.BookFragment">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <WebView
+    android:id="@+id/simple_webView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/book"
-    android:textColor="#fff"/>
+    android:layout_height="wrap_content"
+    android:background="#228b22"/>
+
 
 </LinearLayout>
