@@ -1,6 +1,8 @@
 <resources>
-  <string name="app_name">ReadWithoutMe</string>
-
-  <!-- TODO: Remove or change this placeholder text -->
+  <string name="app_name">Read Without Me</string>
   <string name="book">Book Text</string>
+  <string name="quiz">Quiz</string>
+  <string name="GreenBookQuestion1">What color did the book say Jerry was?\n\n\n</string>
+  <string name="GreenBookQuestion2">What does Dina love to do?\n\n\n</string>
+  <string name="GreenBookQuestion3">What mattered at the end?</string>
 </resources>

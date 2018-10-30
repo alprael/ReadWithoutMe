@@ -63,6 +63,7 @@ public abstract class BookDatabase extends RoomDatabase {
       Book book = new Book();
       book.setBookName("This Book is Green");
       book.setFileName("greenbook.html");
+      book.setAuthorName("Alex Rael");
       dao.insert(book);
       forgetInstance(context);
       return null;
