@@ -14,21 +14,30 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
-import java.util.Timer;
 
 
 public class BookFragment extends Fragment {
 
+  private final long MAX_LONG = 2_099_999_999;
+
   private WebView webView;
-  private Timer timer;
   private TextView textView;
   private Button button;
+  private Button button1;
+  private Button button2;
+  private long counter;
+  private Thread t;
+
+
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
 
+    
+  
+  
 
   @Nullable
   @Override
@@ -40,7 +49,55 @@ public class BookFragment extends Fragment {
     webView.setWebViewClient(new WebViewClient());
     webView.loadUrl("file:///android_asset/books/greenbook.html");
 
-    textView = (TextView) view.findViewById(R.id.timer_text);
+
+    final TextView textView = (TextView) view.findViewById(R.id.timer_text);
+
+    t = new Thread() {
+      public void run() {
+        while (!isInterrupted()) {
+          try {
+
+            Thread.sleep(1000);
+            getActivity().runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                counter++;
+                textView.setText(String.valueOf(counter+""));
+              }
+            });
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    };
+
+    button1 = (Button) view.findViewById(R.id.start_button);
+    button1.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        try {
+          t.start();
+        } catch (IllegalThreadStateException e) {
+          e.printStackTrace();
+        }
+        enableButton2();
+        enableButton();
+      }
+    });
+
+    button2 = (Button) view.findViewById(R.id.stop_button);
+    button2.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        try {
+          t.sleep(MAX_LONG);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    disableButton2();
 
     button = (Button) view.findViewById(R.id.quiz_button);
     button.setOnClickListener(new OnClickListener() {
@@ -52,7 +109,24 @@ public class BookFragment extends Fragment {
         transaction.commit();
       }
     });
+    disableButton();
+
     return view;
   }
+
+  private void disableButton2() {
+    button2.setEnabled(false);
+  }
+  private void enableButton2() {
+    button2.setEnabled(true);
+  }
+
+  private void disableButton() {
+    button.setEnabled(false);
+  }
+  private void enableButton() {
+    button.setEnabled(true);
+  }
+
 }
 

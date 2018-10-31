@@ -5,4 +5,6 @@
   <string name="GreenBookQuestion1">What color did the book say Jerry was?\n\n\n</string>
   <string name="GreenBookQuestion2">What does Dina love to do?\n\n\n</string>
   <string name="GreenBookQuestion3">What mattered at the end?</string>
+  <string name="start">Start</string>
+  <string name="stop">Stop</string>
 </resources>
