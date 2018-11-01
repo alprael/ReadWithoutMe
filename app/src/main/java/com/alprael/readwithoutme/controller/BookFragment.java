@@ -14,19 +14,21 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
+import java.util.Date;
 
 
 public class BookFragment extends Fragment {
 
-  private final long MAX_LONG = 2_099_999_999;
 
   private WebView webView;
   private TextView textView;
   private Button button;
-  private Button button1;
-  private Button button2;
-  private long counter;
+  private Button startButton;
+  private Button stopButton;
+  private int counter=0;
   private Thread t;
+  private Date date;
+  private boolean resume = true;
 
 
 
@@ -49,14 +51,12 @@ public class BookFragment extends Fragment {
     webView.setWebViewClient(new WebViewClient());
     webView.loadUrl("file:///android_asset/books/greenbook.html");
 
-
     final TextView textView = (TextView) view.findViewById(R.id.timer_text);
 
     t = new Thread() {
       public void run() {
-        while (!isInterrupted()) {
+        while (!Thread.interrupted()) {
           try {
-
             Thread.sleep(1000);
             getActivity().runOnUiThread(new Runnable() {
               @Override
@@ -67,34 +67,29 @@ public class BookFragment extends Fragment {
             });
           } catch (InterruptedException e) {
             e.printStackTrace();
+            break;
           }
         }
       }
     };
 
-    button1 = (Button) view.findViewById(R.id.start_button);
-    button1.setOnClickListener(new OnClickListener() {
+    startButton = (Button) view.findViewById(R.id.start_button);
+    startButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        try {
-          t.start();
-        } catch (IllegalThreadStateException e) {
-          e.printStackTrace();
-        }
+        t.start();
         enableButton2();
-        enableButton();
+        startButton.setEnabled(false);
       }
     });
 
-    button2 = (Button) view.findViewById(R.id.stop_button);
-    button2.setOnClickListener(new OnClickListener() {
+    stopButton = (Button) view.findViewById(R.id.stop_button);
+    stopButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        try {
-          t.sleep(MAX_LONG);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+        t.interrupt();
+        enableButton();
+        disableButton2();
       }
     });
     disableButton2();
@@ -115,10 +110,10 @@ public class BookFragment extends Fragment {
   }
 
   private void disableButton2() {
-    button2.setEnabled(false);
+    stopButton.setEnabled(false);
   }
   private void enableButton2() {
-    button2.setEnabled(true);
+    stopButton.setEnabled(true);
   }
 
   private void disableButton() {
