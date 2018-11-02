@@ -22,7 +22,7 @@ public class BookFragment extends Fragment {
 
   private WebView webView;
   private TextView textView;
-  private Button button;
+  private Button quizButton;
   private Button startButton;
   private Button stopButton;
   private int counter=0;
@@ -78,8 +78,9 @@ public class BookFragment extends Fragment {
       @Override
       public void onClick(View v) {
         t.start();
-        enableButton2();
-        startButton.setEnabled(false);
+        enableStopButton();
+        disableQuizButton();
+        disableStartButton();
       }
     });
 
@@ -88,39 +89,47 @@ public class BookFragment extends Fragment {
       @Override
       public void onClick(View v) {
         t.interrupt();
-        enableButton();
-        disableButton2();
+        enableQuizButton();
+        disableStopButton();
       }
     });
-    disableButton2();
+    disableStopButton();
 
-    button = (Button) view.findViewById(R.id.quiz_button);
-    button.setOnClickListener(new OnClickListener() {
+    quizButton = (Button) view.findViewById(R.id.quiz_button);
+    quizButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
        QuizFragment quizFragment = new QuizFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack("quiz");
         transaction.replace(R.id.frag_container, new QuizFragment());
         transaction.commit();
+        counter=0;
       }
     });
-    disableButton();
+    disableQuizButton();
 
     return view;
   }
 
-  private void disableButton2() {
+  private void disableStopButton() {
     stopButton.setEnabled(false);
   }
-  private void enableButton2() {
+  private void enableStopButton() {
     stopButton.setEnabled(true);
   }
 
-  private void disableButton() {
-    button.setEnabled(false);
+  private void disableQuizButton() {
+    quizButton.setEnabled(false);
   }
-  private void enableButton() {
-    button.setEnabled(true);
+  private void enableQuizButton() {
+    quizButton.setEnabled(true);
+  }
+
+  private void disableStartButton() {
+    startButton.setEnabled(false);
+  }
+  private void enableStartButton() {
+    startButton.setEnabled(true);
   }
 
 }

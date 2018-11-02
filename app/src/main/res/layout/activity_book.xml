@@ -5,7 +5,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/colorPrimary"
+  android:background="@color/book_color"
   tools:context=".controller.BookActivity">
 
   <Button
@@ -123,18 +123,19 @@
     android:adjustViewBounds="false"
     android:background="@null"
     android:cropToPadding="false"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toTopOf="@+id/imageButton4"
     app:layout_constraintEnd_toStartOf="@+id/imageButton2"
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintTop_toTopOf="parent"
+    style="@style/Base.CardView"/>
   <ImageButton
     android:id="@+id/imageButton2"
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toTopOf="@+id/imageButton5"
     app:layout_constraintEnd_toStartOf="@+id/imageButton3"
     app:layout_constraintHorizontal_bias="0.5"
@@ -145,7 +146,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toTopOf="@+id/imageButton6"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
@@ -156,7 +157,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toTopOf="@+id/imageButton7"
     app:layout_constraintEnd_toStartOf="@+id/imageButton5"
     app:layout_constraintHorizontal_bias="0.5"
@@ -167,7 +168,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toTopOf="@+id/imageButton8"
     app:layout_constraintEnd_toStartOf="@+id/imageButton6"
     app:layout_constraintHorizontal_bias="0.5"
@@ -178,7 +179,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toTopOf="@+id/imageButton9"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
@@ -189,7 +190,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toStartOf="@+id/imageButton8"
     app:layout_constraintHorizontal_bias="0.5"
@@ -200,7 +201,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toStartOf="@+id/imageButton9"
     app:layout_constraintHorizontal_bias="0.5"
@@ -211,7 +212,7 @@
     android:layout_width="78dp"
     android:layout_height="86dp"
     android:background="@null"
-    android:src="@drawable/bookimg2"
+    android:src="@drawable/book_img"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
@@ -220,8 +221,10 @@
 
   <LinearLayout
     android:id="@+id/frag_container"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="36dp"></LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
