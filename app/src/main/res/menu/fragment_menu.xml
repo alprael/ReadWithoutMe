@@ -5,11 +5,13 @@
   <item
     android:id="@+id/start_button"
     android:title="@string/start"
-    app:showAsAction="always"/>
+    app:showAsAction="always"
+    android:icon="@drawable/ic_play_arrow"/>
   <item
     android:id="@+id/stop_button"
     android:title="@string/stop"
-    app:showAsAction="always"/>
+    app:showAsAction="always"
+    android:icon="@drawable/ic_pause"/>
   <item
     android:id="@+id/quiz_button"
     android:title="@string/quiz"

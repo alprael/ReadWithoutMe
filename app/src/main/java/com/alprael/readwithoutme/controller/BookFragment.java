@@ -6,15 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
-import java.util.Date;
 
 
 public class BookFragment extends Fragment {
@@ -22,13 +22,12 @@ public class BookFragment extends Fragment {
 
   private WebView webView;
   private TextView textView;
-  private Button quizButton;
-  private Button startButton;
-  private Button stopButton;
-  private int counter=0;
+  private int counter;
   private Thread t;
-  private Date date;
-  private boolean resume = true;
+  private boolean resume;
+  private MenuItem start;
+  private MenuItem stop;
+  private MenuItem quiz;
 
 
 
@@ -46,6 +45,7 @@ public class BookFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_book, container, false);
+    setHasOptionsMenu(true);
 
     webView = (WebView) view.findViewById(R.id.simple_webView);
     webView.setWebViewClient(new WebViewClient());
@@ -66,70 +66,37 @@ public class BookFragment extends Fragment {
               }
             });
           } catch (InterruptedException e) {
-            e.printStackTrace();
+            counter=0;
             break;
           }
         }
       }
     };
 
-    startButton = (Button) view.findViewById(R.id.start_button);
-    startButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        t.start();
-        enableStopButton();
-        disableQuizButton();
-        disableStartButton();
-      }
-    });
-
-    stopButton = (Button) view.findViewById(R.id.stop_button);
-    stopButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        t.interrupt();
-        enableQuizButton();
-        disableStopButton();
-      }
-    });
-    disableStopButton();
-
-    quizButton = (Button) view.findViewById(R.id.quiz_button);
-    quizButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-       QuizFragment quizFragment = new QuizFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack("quiz");
-        transaction.replace(R.id.frag_container, new QuizFragment());
-        transaction.commit();
-        counter=0;
-      }
-    });
-    disableQuizButton();
-
     return view;
   }
 
-  private void disableStopButton() {
-    stopButton.setEnabled(false);
-  }
-  private void enableStopButton() {
-    stopButton.setEnabled(true);
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    getActivity().getMenuInflater().inflate(R.menu.fragment_menu, menu);
   }
 
-  private void disableQuizButton() {
-    quizButton.setEnabled(false);
-  }
-  private void enableQuizButton() {
-    quizButton.setEnabled(true);
-  }
-
-  private void disableStartButton() {
-    startButton.setEnabled(false);
-  }
-  private void enableStartButton() {
-    startButton.setEnabled(true);
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.start_button:
+        t.start();
+        break;
+      case R.id.stop_button:
+        t.interrupt();
+        break;
+      case R.id.quiz_button:
+        QuizFragment quizFragment = new QuizFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack("quiz");
+        transaction.replace(R.id.frag_container, new QuizFragment());
+        transaction.commit();
+        break;
+    } return true;
   }
 
 }
