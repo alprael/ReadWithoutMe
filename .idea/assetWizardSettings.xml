@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/JetBrains/IntelliJ%20IDEA%202018.2.2/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_pause_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/JetBrains/IntelliJ%20IDEA%202018.2.2/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_refresh_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_pause" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_refresh_black_24dp" />
                             <entry key="sourceFile" value="C:\Users\awsom" />
                           </map>
                         </option>

@@ -24,6 +24,7 @@ public class BookActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_book);
 
+
     database = BookDatabase.getInstance(this);
     new BookTask().execute();
 

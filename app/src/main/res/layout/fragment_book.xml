@@ -9,22 +9,21 @@
   android:background="#fff"
   tools:context=".controller.BookFragment">
 
+  <Chronometer
+    android:id="@+id/chronometer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:gravity="center_vertical"
+    android:textSize="20sp"/>
+
   <WebView
     android:id="@+id/simple_webView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentStart="true"
-    android:layout_below="@+id/timer_text"
+    android:layout_below="@+id/chronometer"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="20dp">
-  </WebView>
-  <TextView
-    android:id="@+id/timer_text"
-    style="@style/TextAppearance.AppCompat.Large"
-    android:layout_width="match_parent"
-    android:layout_height="35dp"
-    android:gravity="center_horizontal"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:background="#FFFFFFFF"/>
+    tools:layout_editor_absoluteY="20dp"/>
 </RelativeLayout>

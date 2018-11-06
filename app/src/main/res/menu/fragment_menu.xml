@@ -8,10 +8,14 @@
     app:showAsAction="always"
     android:icon="@drawable/ic_play_arrow"/>
   <item
-    android:id="@+id/stop_button"
+    android:id="@+id/pause_button"
     android:title="@string/stop"
     app:showAsAction="always"
     android:icon="@drawable/ic_pause"/>
+  <item
+    android:id="@+id/reset_button"
+    app:showAsAction="never"
+    android:title="@string/reset"/>
   <item
     android:id="@+id/quiz_button"
     android:title="@string/quiz"
