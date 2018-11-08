@@ -1,9 +1,6 @@
 package com.alprael.readwithoutme.controller;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,12 +18,9 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
 
-
 public class BookFragment extends Fragment {
 
-
   private WebView webView;
-  private TextView textView;
   private MenuItem start;
   private MenuItem stop;
   private MenuItem quiz;
@@ -47,16 +41,21 @@ public class BookFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     view = inflater.inflate(R.layout.fragment_book, container, false);
     setHasOptionsMenu(true);
+    initChron();
+    initView();
+    return view;
+  }
 
+  private void initChron() {
     chronometer = (Chronometer) view.findViewById(R.id.chronometer);
     chronometer.setFormat("Time: %s");
     chronometer.setBase(SystemClock.elapsedRealtime());
+  }
 
+  private void initView() {
     webView = (WebView) view.findViewById(R.id.simple_webView);
     webView.setWebViewClient(new WebViewClient());
-    webView.loadUrl("file:///android_asset/books/greenbook.html");
-
-    return view;
+    webView.loadUrl("file:///android_asset/books/green_book.html");
   }
 
   public void startChronometer(View view) {
@@ -76,7 +75,6 @@ public class BookFragment extends Fragment {
   }
 
   public void resetChronometer(View view) {
-
     chronometer.setBase(SystemClock.elapsedRealtime());
     pauseOffset = 0;
   }
