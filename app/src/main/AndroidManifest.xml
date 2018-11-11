@@ -12,7 +12,7 @@
     android:roundIcon="@mipmap/book192"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".controller.LogInActivity">
+    <activity android:name=".controller.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 

@@ -18,37 +18,45 @@ public class MainBookFragment extends Fragment {
   private ImageButton imageButton;
   private Button button;
 
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+
+
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_main_book, container, false);
 
-    imageButton = (ImageButton) view.findViewById(R.id.imageButton1);
+    initButtons(view);
+
+    return view;
+  }
+
+  private void initButtons(View view) {
+    imageButton = view.findViewById(R.id.imageButton1);
     imageButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        BookFragment bookFragment = new BookFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction()
             .addToBackStack("book");
-        transaction.replace(R.id.frag_container, new QuizFragment());
+        transaction.replace(R.id.frag_container, new BookFragment());
         transaction.commit();
 
       }
     });
 
-    button = (Button) view.findViewById(R.id.button1);
+    button = view.findViewById(R.id.button1);
     button.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        BookFragment bookFragment = new BookFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction()
             .addToBackStack("book");
-        transaction.replace(R.id.frag_container, new QuizFragment());
+        transaction.replace(R.id.frag_container, new BookFragment());
         transaction.commit();
       }
     });
-
-    return view;
   }
 }
