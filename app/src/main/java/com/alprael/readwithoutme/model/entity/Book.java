@@ -1,12 +1,17 @@
-package com.alprael.readwithoutme.model.database;
+package com.alprael.readwithoutme.model.entity;
 
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+/**
+ * Book Entity for the Read Without Me database.
+ * It defines the primary and foreign keys of the table.
+ */
 @Entity(
     tableName = "books",
     indices = {@Index(value = {"book_name"}, unique = true)}
@@ -16,6 +21,9 @@ public class Book {
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "book_id")
   private long id;
+
+  @ColumnInfo(name = "user_id", index = true)
+  private long userId;
 
   @NonNull
   @ColumnInfo(name = "file_name", collate = ColumnInfo.NOCASE)
@@ -41,6 +49,14 @@ public class Book {
 
   public void setId(long id) {
     this.id = id;
+  }
+
+  public long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(long userId) {
+    this.userId = userId;
   }
 
   @NonNull

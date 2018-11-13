@@ -37,11 +37,13 @@ public class QuizFragment extends Fragment {
   }
 
   private void initViews() {
+    Bundle bundle = getArguments();
     textView = view.findViewById(R.id.quiz_fragment_quiz_text);
     textView.setText(getString(R.string.GreenBookQuestion1)
         + getString(R.string.GreenBookQuestion2)
         + getString(R.string.GreenBookQuestion3));
     timerText = view.findViewById(R.id.quiz_fragment_timer_text);
+    timerText.setText(String.format("Time: %s", bundle.getLong(getString(R.string.seconds_key))));
   }
 
   private void goToHome() {
@@ -83,6 +85,9 @@ public class QuizFragment extends Fragment {
         break;
       case R.id.quiz_fragment_menu_user_info:
         goToInfo();
+        break;
+      case R.id.quiz_fragment_menu_done:
+        // TODO Increase booksRead by 1 and set time for book.
         break;
     }
     return true;

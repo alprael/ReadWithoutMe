@@ -1,4 +1,4 @@
-package com.alprael.readwithoutme.model.database;
+package com.alprael.readwithoutme.model.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

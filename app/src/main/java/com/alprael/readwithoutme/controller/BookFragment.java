@@ -61,7 +61,7 @@ public class BookFragment extends Fragment {
     new QueryTask().execute(1L);
   }
 
-  private void startChronometer(View view) {
+  private void startChronometer() {
     if (!running) {
       chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
       chronometer.start();
@@ -69,7 +69,7 @@ public class BookFragment extends Fragment {
     }
   }
 
-  private void pauseChronometer(View view) {
+  private void pauseChronometer() {
     if (running) {
       chronometer.stop();
       pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
@@ -77,7 +77,7 @@ public class BookFragment extends Fragment {
     }
   }
 
-  private void resetChronometer(View view) {
+  private void resetChronometer() {
     chronometer.setBase(SystemClock.elapsedRealtime());
     pauseOffset = 0;
   }
@@ -91,7 +91,12 @@ public class BookFragment extends Fragment {
   }
 
   private void goToQuiz() {
+    pauseChronometer();
+    long seconds = pauseOffset / 1000;
+    Bundle bundle = new Bundle();
+    bundle.putLong(getString(R.string.seconds_key), seconds);
     QuizFragment quizFragment = new QuizFragment();
+    quizFragment.setArguments(bundle);
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
         .addToBackStack("quiz");
     transaction.replace(R.id.frag_container, quizFragment);
@@ -125,13 +130,13 @@ public class BookFragment extends Fragment {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.book_fragment_menu_start_button:
-        startChronometer(chronometer);
+        startChronometer();
         break;
       case R.id.book_fragment_menu_pause_button:
-        pauseChronometer(chronometer);
+        pauseChronometer();
         break;
       case R.id.book_fragment_menu_reset_button:
-        resetChronometer(chronometer);
+        resetChronometer();
         break;
       case R.id.book_fragment_menu_quiz_button:
         goToQuiz();

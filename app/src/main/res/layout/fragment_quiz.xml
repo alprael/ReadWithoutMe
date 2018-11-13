@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:background="#AED581"
   tools:context=".controller.QuizFragment">
 
@@ -10,12 +11,23 @@
     android:id="@+id/quiz_fragment_quiz_text"
     style="@style/QuizStyle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"/>
+    android:layout_height="496dp"
+    android:gravity="center"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
   <TextView
     android:id="@+id/quiz_fragment_timer_text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="TextView"/>
+    app:layout_constraintBottom_toTopOf="@id/quiz_fragment_quiz_text"
+    app:layout_constraintLeft_toLeftOf="@id/quiz_fragment_quiz_text"
+    app:layout_constraintRight_toRightOf="@id/quiz_fragment_quiz_text"
+    android:text="TextView"
+    android:textSize="24dp"/>
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

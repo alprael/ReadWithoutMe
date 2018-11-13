@@ -1,5 +1,6 @@
 package com.alprael.readwithoutme.controller;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
+import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.User;
 
 /**
  * Fragment that inflates the view with the user's info.
@@ -43,6 +46,8 @@ public class UserInfo extends Fragment {
     userInfoDisplayName = view.findViewById(R.id.user_info_display_name);
     userInforDisplayEmail = view.findViewById(R.id.user_info_display_email);
     userInforDisplayBooksRead = view.findViewById(R.id.user_info_display_books_read);
+    QueryTask queryTask = new QueryTask();
+    queryTask.execute();
   }
 
   private void goToHome() {
@@ -76,5 +81,21 @@ public class UserInfo extends Fragment {
         break;
     }
     return true;
+  }
+
+  private class QueryTask extends AsyncTask<Void, Void, User> {
+
+    @Override
+    protected User doInBackground(Void... voids) {
+      User user = RWMDatabase.getInstance(getContext()).getUserDao().selectUser(
+          ((MainActivity) getActivity()).getUserId());
+      return user;
+    }
+
+    @Override
+    protected void onPostExecute(User user) {
+      userInfoDisplayName.setText(user.getDisplayName());
+      userInforDisplayEmail.setText(user.getEmail());
+    }
   }
 }

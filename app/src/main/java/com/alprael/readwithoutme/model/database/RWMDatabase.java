@@ -7,6 +7,10 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import com.alprael.readwithoutme.model.dao.BookDao;
+import com.alprael.readwithoutme.model.dao.UserDao;
+import com.alprael.readwithoutme.model.entity.Book;
+import com.alprael.readwithoutme.model.entity.User;
 
 @Database(entities = {Book.class, User.class}, version = 1, exportSchema = true)
 public abstract class RWMDatabase extends RoomDatabase {
@@ -54,7 +58,7 @@ public abstract class RWMDatabase extends RoomDatabase {
 
     private Context context;
 
-    public PrepopulateTask(Context context) {
+    PrepopulateTask(Context context) {
       this.context = context;
     }
 

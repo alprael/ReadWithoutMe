@@ -5,8 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import com.alprael.readwithoutme.R;
-import com.alprael.readwithoutme.model.database.BookDao;
+import com.alprael.readwithoutme.model.dao.BookDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.User;
 
 /**
  * The MainActivity for the project, which will be inflated by a fragment.
@@ -15,6 +16,7 @@ import com.alprael.readwithoutme.model.database.RWMDatabase;
 public class MainActivity extends AppCompatActivity {
 
   private RWMDatabase rWMDatabase;
+  private long userId;
 
   /**
    * Inflates the view with a container for the fragment. Also initializes the database builder.
@@ -38,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
     new BookTask().execute();
   }
 
+  public long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(long userId) {
+    this.userId = userId;
+  }
 
   private class BookTask extends AsyncTask<Void, Void, Void> {
 

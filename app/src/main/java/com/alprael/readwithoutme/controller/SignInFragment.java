@@ -17,10 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.alprael.readwithoutme.R;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -90,7 +92,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
         continueOn();
         break;
     }
-
   }
 
   /**
@@ -136,7 +137,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
 
   private void continueOn() {
     FragmentManager fragmentManager = getFragmentManager();
-    FragmentTransaction transaction = fragmentManager.beginTransaction().addToBackStack("login");
+    FragmentTransaction transaction = fragmentManager.beginTransaction();
     transaction.replace(R.id.frag_container, new MainBookFragment());
     transaction.commit();
   }
@@ -150,6 +151,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       Name.setText(name);
       Email.setText(email);
       updateUI(true);
+      QueryTask queryTask = new QueryTask();
+      queryTask.execute(email, name);
     } else {
       Toast.makeText(getActivity(), "That didn't work.", Toast.LENGTH_LONG).show();
       updateUI(false);
@@ -182,11 +185,24 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     }
   }
 
-  private class QueryTask extends AsyncTask<Long, Void, String> {
+  private class QueryTask extends AsyncTask<String, Void, Long> {
+
 
     @Override
-    protected String doInBackground(Long... longs) {
-      return RWMDatabase.getInstance(getContext()).getUserDao().selectDisplayName(longs[0]);
+    protected Long doInBackground(String... strings) {
+      User user = RWMDatabase.getInstance(getContext()).getUserDao().selectEmail(strings[0]);
+      if (user==null) {
+        user = new User();
+        user.setEmail(strings[0]);
+        user.setDisplayName(strings[1]);
+        return RWMDatabase.getInstance(getActivity()).getUserDao().insert(user);
+      }
+      return user.getId();
+    }
+
+    @Override
+    protected void onPostExecute(Long aLong) {
+      ((MainActivity) getActivity()).setUserId(aLong);
     }
   }
 
