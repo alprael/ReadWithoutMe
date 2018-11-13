@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,26 +17,27 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Chronometer;
 import com.alprael.readwithoutme.R;
-import com.alprael.readwithoutme.model.database.Book;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
 
+/**
+ * Fragment that inflates the contents of the books and chronometer.
+ */
 public class BookFragment extends Fragment {
 
   private WebView webView;
-  private MenuItem start;
-  private MenuItem stop;
-  private MenuItem quiz;
   private View view;
   private Chronometer chronometer;
   private boolean running;
   private long pauseOffset;
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
-
-
+  /**
+   * Main inflater of this fragment which initializes the views, initializes the chronometer,
+   * and sets an options menu.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
@@ -46,18 +46,17 @@ public class BookFragment extends Fragment {
     setHasOptionsMenu(true);
     initChron();
     initView();
-
     return view;
   }
 
   private void initChron() {
-    chronometer = (Chronometer) view.findViewById(R.id.chronometer);
+    chronometer = view.findViewById(R.id.chronometer);
     chronometer.setFormat("Time: %s");
     chronometer.setBase(SystemClock.elapsedRealtime());
   }
 
   private void initView() {
-    webView = (WebView) view.findViewById(R.id.simple_webView);
+    webView = view.findViewById(R.id.book_fragment_webView);
     webView.setWebViewClient(new WebViewClient());
     new QueryTask().execute(1L);
   }
@@ -84,35 +83,65 @@ public class BookFragment extends Fragment {
   }
 
   private void goToInfo() {
-
+    UserInfo userInfo = new UserInfo();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction()
+        .addToBackStack("info");
+    transaction.replace(R.id.frag_container, userInfo);
+    transaction.commit();
   }
 
+  private void goToQuiz() {
+    QuizFragment quizFragment = new QuizFragment();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction()
+        .addToBackStack("quiz");
+    transaction.replace(R.id.frag_container, quizFragment);
+    transaction.commit();
+  }
+
+  private void goToHome() {
+    MainBookFragment mainBookFragment = new MainBookFragment();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction()
+        .addToBackStack("home");
+    transaction.replace(R.id.frag_container, mainBookFragment);
+    transaction.commit();
+  }
+
+  /**
+   * Creates the options menu.
+   * @param menu
+   * @param inflater
+   */
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     getActivity().getMenuInflater().inflate(R.menu.book_fragment_menu, menu);
   }
 
+  /**
+   * Defines what each item of the options menu does when selected.
+   * @param item
+   * @return
+   */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case R.id.start_button:
+      case R.id.book_fragment_menu_start_button:
         startChronometer(chronometer);
         break;
-      case R.id.pause_button:
+      case R.id.book_fragment_menu_pause_button:
         pauseChronometer(chronometer);
         break;
-      case R.id.reset_button:
+      case R.id.book_fragment_menu_reset_button:
         resetChronometer(chronometer);
         break;
-      case R.id.quiz_button:
-        QuizFragment quizFragment = new QuizFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction()
-            .addToBackStack("quiz");
-        transaction.replace(R.id.frag_container, new QuizFragment());
-        transaction.commit();
+      case R.id.book_fragment_menu_quiz_button:
+        goToQuiz();
         break;
-      case R.id.book_info:
+      case R.id.book_fragment_menu_book_info:
       goToInfo();
+      break;
+      case R.id.book_fragment_menu_home:
+        goToHome();
+        break;
     }
     return true;
   }

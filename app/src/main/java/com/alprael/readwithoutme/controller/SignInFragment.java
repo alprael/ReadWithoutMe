@@ -28,7 +28,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 /**
- * Main Google sign in screen.
+ * Main fragment with Google sign in.
  */
 public class SignInFragment extends Fragment implements View.OnClickListener,
     GoogleApiClient.OnConnectionFailedListener {
@@ -43,7 +43,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   private static final int REQ_CODE = 9001;
 
   /**
-   * Inflates the fragment with the initialized views.
+   * Main inflater of this fragment which initializes the views, buttons, and builds Google Sign In.
    * @param inflater
    * @param container
    * @param savedInstanceState
@@ -53,14 +53,10 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    View view =inflater.inflate(R.layout.fragment_login, container, false);
-
+    View view =inflater.inflate(R.layout.fragment_sign_in, container, false);
     initViews(view);
     displayInfo.setVisibility(View.INVISIBLE);
-
     initButtons(view);
-
-
     return view;
   }
 

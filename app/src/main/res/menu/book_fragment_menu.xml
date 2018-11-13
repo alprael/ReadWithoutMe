@@ -3,25 +3,29 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/start_button"
+    android:id="@+id/book_fragment_menu_start_button"
     android:title="@string/start"
     app:showAsAction="always"
     android:icon="@drawable/ic_play_arrow"/>
   <item
-    android:id="@+id/pause_button"
+    android:id="@+id/book_fragment_menu_pause_button"
     android:title="@string/stop"
     app:showAsAction="always"
     android:icon="@drawable/ic_pause"/>
   <item
-    android:id="@+id/reset_button"
+    android:id="@+id/book_fragment_menu_reset_button"
     app:showAsAction="never"
     android:title="@string/reset"/>
   <item
-    android:id="@+id/quiz_button"
+    android:id="@+id/book_fragment_menu_quiz_button"
     android:title="@string/quiz"
     app:showAsAction="never"/>
   <item
-    android:id="@+id/book_info"
+    android:id="@+id/book_fragment_menu_book_info"
     android:title="Info"
+    app:showAsAction="never"/>
+  <item
+    android:id="@+id/book_fragment_menu_home"
+    android:title="Home"
     app:showAsAction="never"/>
 </menu>

@@ -8,22 +8,28 @@ import com.alprael.readwithoutme.R;
 import com.alprael.readwithoutme.model.database.BookDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
 
+/**
+ * The MainActivity for the project, which will be inflated by a fragment.
+ * Read Without Me database builder also occurs here.
+ */
 public class MainActivity extends AppCompatActivity {
 
   private RWMDatabase rWMDatabase;
 
+  /**
+   * Inflates the view with a container for the fragment. Also initializes the database builder.
+   * @param savedInstanceState
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
     initDb();
     FrameLayout frameLayout = new FrameLayout(this);
+    SignInFragment signInFragment = new SignInFragment();
     frameLayout.findViewById(R.id.frag_container);
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.frag_container, new SignInFragment()).commit();
-
-
+        .replace(R.id.frag_container, signInFragment).commit();
   }
 
 
@@ -33,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
-  public class BookTask extends AsyncTask<Void, Void, Void> {
-
+  private class BookTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {

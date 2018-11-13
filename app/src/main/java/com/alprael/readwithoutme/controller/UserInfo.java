@@ -1,6 +1,8 @@
 package com.alprael.readwithoutme.controller;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -13,35 +15,34 @@ import android.widget.TextView;
 import com.alprael.readwithoutme.R;
 
 /**
- * This fragment inflates a quiz.
+ * Fragment that inflates the view with the user's info.
  */
-public class QuizFragment extends Fragment {
+public class UserInfo extends Fragment {
 
-  private TextView textView, timerText;
   private View view;
+  private TextView userInfoDisplayName, userInforDisplayEmail, userInforDisplayBooksRead;
 
   /**
-   * Main inflater of this fragment which initializes the views and sets and options menu.
+   * Main inflater of this fragment which initializes the views and sets an options menu.
    * @param inflater
    * @param container
    * @param savedInstanceState
    * @return
    */
+  @Nullable
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.fragment_quiz, container, false);
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+    view = inflater.inflate(R.layout.user_info_fragment, container, false);
     setHasOptionsMenu(true);
     initViews();
     return view;
   }
 
   private void initViews() {
-    textView = view.findViewById(R.id.quiz_fragment_quiz_text);
-    textView.setText(getString(R.string.GreenBookQuestion1)
-        + getString(R.string.GreenBookQuestion2)
-        + getString(R.string.GreenBookQuestion3));
-    timerText = view.findViewById(R.id.quiz_fragment_timer_text);
+    userInfoDisplayName = view.findViewById(R.id.user_info_display_name);
+    userInforDisplayEmail = view.findViewById(R.id.user_info_display_email);
+    userInforDisplayBooksRead = view.findViewById(R.id.user_info_display_books_read);
   }
 
   private void goToHome() {
@@ -52,14 +53,6 @@ public class QuizFragment extends Fragment {
     transaction.commit();
   }
 
-  private void goToInfo() {
-    UserInfo userInfo = new UserInfo();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("info");
-    transaction.replace(R.id.frag_container, userInfo);
-    transaction.commit();
-  }
-
   /**
    * Creates the options menu.
    * @param menu
@@ -67,7 +60,7 @@ public class QuizFragment extends Fragment {
    */
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    getActivity().getMenuInflater().inflate(R.menu.quiz_fragment_menu, menu);
+    getActivity().getMenuInflater().inflate(R.menu.user_info_menu, menu);
   }
 
   /**
@@ -78,14 +71,10 @@ public class QuizFragment extends Fragment {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case R.id.quiz_fragment_menu_home:
+      case R.id.user_info_menu_home:
         goToHome();
-        break;
-      case R.id.quiz_fragment_menu_user_info:
-        goToInfo();
         break;
     }
     return true;
   }
 }
-

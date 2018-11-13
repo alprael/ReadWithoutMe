@@ -7,13 +7,13 @@
   tools:context=".controller.QuizFragment">
 
   <TextView
-    android:id="@+id/quiz_text"
+    android:id="@+id/quiz_fragment_quiz_text"
     style="@style/QuizStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"/>
   <TextView
-    android:id="@+id/textView"
+    android:id="@+id/quiz_fragment_timer_text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="TextView"/>

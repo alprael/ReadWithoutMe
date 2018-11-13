@@ -3,13 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/quiz_fragment_menu_home"
+    android:id="@+id/user_info_menu_home"
     android:title="Home"
-    app:showAsAction="always"
-    android:icon="@drawable/ic_home"/>
-
-  <item
-    android:id="@+id/quiz_fragment_menu_user_info"
-    android:title="Info"
     app:showAsAction="never"/>
 </menu>
