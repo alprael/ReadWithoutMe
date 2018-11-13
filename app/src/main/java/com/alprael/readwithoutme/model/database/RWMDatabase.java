@@ -61,12 +61,12 @@ public abstract class RWMDatabase extends RoomDatabase {
     @Override
     protected Void doInBackground(Void... voids) {
       RWMDatabase db = getInstance(context);
-      BookDao dao = db.getBookDao();
+      BookDao bookDao = db.getBookDao();
       Book book = new Book();
       book.setBookName("This Book is Green");
       book.setFileName("green_book.html");
       book.setAuthorName("Alex Rael");
-      dao.insert(book);
+      bookDao.insert(book);
       forgetInstance(context);
       return null;
     }

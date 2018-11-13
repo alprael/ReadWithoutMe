@@ -1,8 +1,5 @@
 package com.alprael.readwithoutme.controller;
 
-import static java.lang.String.valueOf;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,10 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alprael.readwithoutme.R;
-import com.alprael.readwithoutme.model.database.BookDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
-import com.alprael.readwithoutme.model.database.User;
-import com.alprael.readwithoutme.model.database.UserDao;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -33,6 +27,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+/**
+ * Main Google sign in screen.
+ */
 public class SignInFragment extends Fragment implements View.OnClickListener,
     GoogleApiClient.OnConnectionFailedListener {
 
@@ -45,11 +42,13 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
 
   private static final int REQ_CODE = 9001;
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
-
+  /**
+   * Inflates the fragment with the initialized views.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -65,17 +64,23 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     return view;
   }
 
+  /**
+   * Begins the connection to Google Sign In to allow for signing in.
+   */
   @Override
   public void onStart() {
     GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestEmail()
-        .build();
+        .requestEmail().build();
     googleApiClient = new GoogleApiClient.Builder(getActivity())
         .addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
     googleApiClient.connect();
     super.onStart();
   }
 
+  /**
+   * Methods for each on screen button for this fragment.
+   * @param view
+   */
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
@@ -92,6 +97,10 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
 
   }
 
+  /**
+   * If the connection to Google sign in fails, a Toast shows.
+   * @param connectionResult
+   */
   @Override
   public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     Toast.makeText(getActivity(), "That didn't work", Toast.LENGTH_LONG).show();
@@ -161,6 +170,13 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     }
   }
 
+  /**
+   * If the result is successful, this methods hands off the result to the handler. Otherwise,
+   * connection failed.
+   * @param requestCode
+   * @param resultCode
+   * @param data
+   */
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -170,24 +186,14 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     }
   }
 
-  private class PrepopulateUserTask extends AsyncTask<Void, Void, Void> {
-
-    private Context context;
-
-    public PrepopulateUserTask(Context context) {
-      this.context = context;
-    }
+  private class QueryTask extends AsyncTask<Long, Void, String> {
 
     @Override
-    protected Void doInBackground(Void... voids) {
-      RWMDatabase rwmDatabase = RWMDatabase.getInstance(context);
-      UserDao userDao = rwmDatabase.getUserDao();
-      User user = new User();
-      user.setDisplayName(valueOf(Name.getText()));
-      user.setEmail(valueOf(Email.getText()));
-      return null;
+    protected String doInBackground(Long... longs) {
+      return RWMDatabase.getInstance(getContext()).getUserDao().selectDisplayName(longs[0]);
     }
   }
+
 }
 
 

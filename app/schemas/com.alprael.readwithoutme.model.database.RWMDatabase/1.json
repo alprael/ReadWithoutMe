@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "961692222a2a26b49d6aaf2c74388dad",
+    "identityHash": "3f21b5d4d2f9f378a9608cd58a02b9af",
     "entities": [
       {
         "tableName": "books",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `fileName` TEXT NOT NULL, `author_name` TEXT NOT NULL COLLATE NOCASE, `book_name` TEXT NOT NULL COLLATE NOCASE)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT NOT NULL COLLATE NOCASE, `author_name` TEXT NOT NULL COLLATE NOCASE, `book_name` TEXT NOT NULL COLLATE NOCASE, `book_time` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -16,7 +16,7 @@
           },
           {
             "fieldPath": "fileName",
-            "columnName": "fileName",
+            "columnName": "file_name",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -30,6 +30,12 @@
             "fieldPath": "bookName",
             "columnName": "book_name",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookTime",
+            "columnName": "book_time",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -53,7 +59,7 @@
       },
       {
         "tableName": "users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `display_name` TEXT NOT NULL COLLATE NOCASE, `email` TEXT NOT NULL COLLATE NOCASE, `books_read` INTEGER NOT NULL, `book_time` INTEGER NOT NULL, `book_name` TEXT NOT NULL COLLATE NOCASE)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `display_name` TEXT NOT NULL COLLATE NOCASE, `email` TEXT NOT NULL COLLATE NOCASE, `number_books_read` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -74,21 +80,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "booksRead",
-            "columnName": "books_read",
+            "fieldPath": "numberBooksRead",
+            "columnName": "number_books_read",
             "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "bookTime",
-            "columnName": "book_time",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "bookName",
-            "columnName": "book_name",
-            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -113,7 +107,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"961692222a2a26b49d6aaf2c74388dad\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3f21b5d4d2f9f378a9608cd58a02b9af\")"
     ]
   }
 }

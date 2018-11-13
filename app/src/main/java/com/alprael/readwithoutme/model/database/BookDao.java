@@ -8,6 +8,9 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 import java.util.List;
 
+/**
+ * Book Table for Read Without Me database.
+ */
 @Dao
 public interface BookDao {
 
@@ -23,6 +26,15 @@ public interface BookDao {
 
   @Query("SELECT * FROM books ORDER BY book_name ASC")
   List<Book> select();
+
+  @Query("SELECT * FROM books WHERE book_id=:book_id")
+  Book selectBook(long book_id);
+
+  @Query("SELECT file_name FROM books WHERE book_id=:bookId")
+  String selectFileName(long bookId);
+
+  @Query("SELECT book_time FROM books WHERE book_id=:bookId")
+  Long selectBookTime(long bookId);
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(Book books);

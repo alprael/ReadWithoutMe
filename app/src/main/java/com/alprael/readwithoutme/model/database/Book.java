@@ -18,7 +18,7 @@ public class Book {
   private long id;
 
   @NonNull
-  @ColumnInfo
+  @ColumnInfo(name = "file_name", collate = ColumnInfo.NOCASE)
   private String fileName;
 
   @NonNull
@@ -29,6 +29,11 @@ public class Book {
   @NonNull
   @ColumnInfo(name = "book_name", collate = ColumnInfo.NOCASE)
   private String bookName;
+
+  @NonNull
+  @ColumnInfo(name = "book_time")
+  private long bookTime;
+
 
   public long getId() {
     return id;
@@ -60,4 +65,13 @@ public class Book {
   public String getAuthorName() { return authorName; }
 
   public void setAuthorName(@NonNull String authorName) {this.authorName = authorName;}
+
+  public long getBookTime() {
+    return bookTime;
+  }
+
+  public void setBookTime(long bookTime) {
+    this.bookTime = bookTime;
+  }
+
 }

@@ -8,8 +8,7 @@ import android.support.annotation.NonNull;
 
 @Entity(
     tableName = "users",
-    indices = {@Index(value = {"display_name"}, unique = true)}
-)
+    indices = {@Index(value = {"display_name"}, unique = true)})
 
 public class User {
 
@@ -26,16 +25,13 @@ public class User {
   private String email;
 
   @NonNull
-  @ColumnInfo(name = "books_read")
-  private long booksRead;
+  @ColumnInfo(name = "number_books_read")
+  private long numberBooksRead;
 
-  @NonNull
-  @ColumnInfo(name = "book_time")
-  private long bookTime;
 
-  @NonNull
-  @ColumnInfo(name = "book_name", collate = ColumnInfo.NOCASE)
-  private String bookName;
+  public User() {
+
+  }
 
   public long getId() {
     return id;
@@ -63,28 +59,12 @@ public class User {
     this.email = email;
   }
 
-  public long getBooksRead() {
-    return booksRead;
+  public long getNumberBooksRead() {
+    return numberBooksRead;
   }
 
-  public void setBooksRead(long booksRead) {
-    this.booksRead = booksRead;
+  public void setNumberBooksRead(long numberBooksRead) {
+    this.numberBooksRead = numberBooksRead;
   }
 
-  public long getBookTime() {
-    return bookTime;
-  }
-
-  public void setBookTime(long bookTime) {
-    this.bookTime = bookTime;
-  }
-
-  @NonNull
-  public String getBookName() {
-    return bookName;
-  }
-
-  public void setBookName(@NonNull String bookName) {
-    this.bookName = bookName;
-  }
 }

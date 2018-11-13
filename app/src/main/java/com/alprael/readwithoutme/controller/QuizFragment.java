@@ -2,7 +2,11 @@ package com.alprael.readwithoutme.controller;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -29,5 +33,32 @@ public class QuizFragment extends Fragment {
     return view;
   }
 
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    getActivity().getMenuInflater().inflate(R.menu.quiz_fragment_menu, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.quiz_go_home:
+        goHome();
+      case R.id.quiz_info:
+        goToInfo();
+    }
+    return true;
+  }
+
+  private void goHome() {
+    MainBookFragment mainBookFragment = new MainBookFragment();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction()
+        .addToBackStack("home");
+    transaction.replace(R.id.frag_container, new MainBookFragment());
+    transaction.commit();
+  }
+
+  private void goToInfo() {
+
+  }
 }
 
