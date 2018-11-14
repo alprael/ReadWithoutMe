@@ -83,7 +83,7 @@ public class BookFragment extends Fragment {
   }
 
   private void goToInfo() {
-    UserInfo userInfo = new UserInfo();
+    UserInfoFragment userInfo = new UserInfoFragment();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
         .addToBackStack("info");
     transaction.replace(R.id.frag_container, userInfo);
@@ -105,8 +105,7 @@ public class BookFragment extends Fragment {
 
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("home");
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }

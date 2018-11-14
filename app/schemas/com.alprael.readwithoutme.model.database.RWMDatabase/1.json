@@ -2,21 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "36f25464dfd2d91c9df71efb33aef765",
+    "identityHash": "aa1ce98f09310506738e341c18d12f9a",
     "entities": [
       {
         "tableName": "books",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `file_name` TEXT NOT NULL COLLATE NOCASE, `author_name` TEXT NOT NULL COLLATE NOCASE, `book_name` TEXT NOT NULL COLLATE NOCASE, `book_time` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT NOT NULL COLLATE NOCASE, `author_name` TEXT NOT NULL COLLATE NOCASE, `book_name` TEXT NOT NULL COLLATE NOCASE)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "book_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "userId",
-            "columnName": "user_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -37,12 +31,6 @@
             "columnName": "book_name",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "bookTime",
-            "columnName": "book_time",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -59,14 +47,6 @@
               "book_name"
             ],
             "createSql": "CREATE UNIQUE INDEX `index_books_book_name` ON `${TABLE_NAME}` (`book_name`)"
-          },
-          {
-            "name": "index_books_user_id",
-            "unique": false,
-            "columnNames": [
-              "user_id"
-            ],
-            "createSql": "CREATE  INDEX `index_books_user_id` ON `${TABLE_NAME}` (`user_id`)"
           }
         ],
         "foreignKeys": []
@@ -121,7 +101,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"36f25464dfd2d91c9df71efb33aef765\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"aa1ce98f09310506738e341c18d12f9a\")"
     ]
   }
 }

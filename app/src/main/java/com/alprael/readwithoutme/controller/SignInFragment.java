@@ -22,7 +22,6 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -41,6 +40,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   private LinearLayout displayInfo;
   private Button signOutButton;
   private Button continueButton;
+  private View view;
 
   private static final int REQ_CODE = 9001;
 
@@ -55,10 +55,10 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    View view =inflater.inflate(R.layout.fragment_sign_in, container, false);
-    initViews(view);
+    view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+    initViews();
     displayInfo.setVisibility(View.INVISIBLE);
-    initButtons(view);
+    initButtons();
     return view;
   }
 
@@ -104,13 +104,13 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   }
 
 
-  private void initViews(View view) {
+  private void initViews() {
     displayInfo = view.findViewById(R.id.display_info);
     Name = view.findViewById(R.id.display_name);
     Email = view.findViewById(R.id.display_email);
   }
 
-  private void initButtons(View view) {
+  private void initButtons() {
     signInButton = view.findViewById(R.id.sign_in);
     signInButton.setOnClickListener(this);
 
@@ -205,7 +205,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       ((MainActivity) getActivity()).setUserId(aLong);
     }
   }
-
 }
 
 

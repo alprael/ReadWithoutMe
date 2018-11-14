@@ -37,6 +37,9 @@ public interface UserDao {
   @Query("SELECT * FROM users WHERE display_name=:displayName")
   User selectDisplayName(String displayName);
 
+  @Query("SELECT * FROM users WHERE number_books_read=:numberBooksRead")
+  User selectNumberBooksRead(long numberBooksRead);
+
   @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(User users);
 

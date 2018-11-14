@@ -34,10 +34,7 @@ public interface BookDao {
   @Query("SELECT file_name FROM books WHERE book_id=:bookId")
   String selectFileName(long bookId);
 
-  @Query("SELECT book_time FROM books WHERE book_id=:bookId")
-  Long selectBookTime(long bookId);
-
-  @Update(onConflict = OnConflictStrategy.REPLACE)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(Book books);
 
   @Update(onConflict = OnConflictStrategy.REPLACE)

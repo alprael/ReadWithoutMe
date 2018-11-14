@@ -20,19 +20,23 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="100dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
       android:gravity="center_horizontal"
       android:text="Display Name"
-      android:textSize="30dp"/>
+      android:textSize="32dp"/>
 
     <TextView
       android:id="@+id/display_email"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
       android:textColor="#000000"
       android:gravity="center_horizontal"
       android:text="Display Email"
-      android:textSize="20dp"/>
+      android:textSize="24dp"/>
 
     <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
@@ -45,9 +49,9 @@
         android:text="Log Out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/continue_button"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:shadowColor="#000000"/>
 
       <Button
         android:id="@+id/continue_button"
@@ -69,15 +73,15 @@
     android:id="@+id/sign_in"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="50dp"
-    android:layout_marginRight="50dp">
+    android:layout_marginTop="24dp"
+    android:layout_marginLeft="48dp"
+    android:layout_marginRight="48dp">
   </com.google.android.gms.common.SignInButton>
 
   <ImageView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="24dp"
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"

@@ -5,8 +5,7 @@
   <item
     android:id="@+id/quiz_fragment_menu_home"
     android:title="Home"
-    app:showAsAction="always"
-    android:icon="@drawable/ic_home"/>
+    app:showAsAction="never"/>
 
   <item
     android:id="@+id/quiz_fragment_menu_user_info"
@@ -14,7 +13,8 @@
     app:showAsAction="never"/>
 
   <item
-    android:id="@+id/quiz_fragment_menu_done"
+    android:id="@+id/quiz.fragment.menu.done"
     android:title="Done"
     app:showAsAction="never"/>
+
 </menu>

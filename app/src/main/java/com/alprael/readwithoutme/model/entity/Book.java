@@ -3,7 +3,6 @@ package com.alprael.readwithoutme.model.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -22,9 +21,6 @@ public class Book {
   @ColumnInfo(name = "book_id")
   private long id;
 
-  @ColumnInfo(name = "user_id", index = true)
-  private long userId;
-
   @NonNull
   @ColumnInfo(name = "file_name", collate = ColumnInfo.NOCASE)
   private String fileName;
@@ -38,10 +34,6 @@ public class Book {
   @ColumnInfo(name = "book_name", collate = ColumnInfo.NOCASE)
   private String bookName;
 
-  @NonNull
-  @ColumnInfo(name = "book_time")
-  private long bookTime;
-
 
   public long getId() {
     return id;
@@ -49,14 +41,6 @@ public class Book {
 
   public void setId(long id) {
     this.id = id;
-  }
-
-  public long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(long userId) {
-    this.userId = userId;
   }
 
   @NonNull
@@ -81,13 +65,5 @@ public class Book {
   public String getAuthorName() { return authorName; }
 
   public void setAuthorName(@NonNull String authorName) {this.authorName = authorName;}
-
-  public long getBookTime() {
-    return bookTime;
-  }
-
-  public void setBookTime(long bookTime) {
-    this.bookTime = bookTime;
-  }
 
 }

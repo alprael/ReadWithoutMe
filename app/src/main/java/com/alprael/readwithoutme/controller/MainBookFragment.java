@@ -75,7 +75,7 @@ public class MainBookFragment extends Fragment {
   }
 
   private void goToInfo() {
-    UserInfo userInfo = new UserInfo();
+    UserInfoFragment userInfo = new UserInfoFragment();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
         .addToBackStack("info");
     transaction.replace(R.id.frag_container, userInfo);

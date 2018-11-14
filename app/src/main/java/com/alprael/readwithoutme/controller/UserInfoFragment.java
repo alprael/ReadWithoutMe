@@ -20,7 +20,7 @@ import com.alprael.readwithoutme.model.entity.User;
 /**
  * Fragment that inflates the view with the user's info.
  */
-public class UserInfo extends Fragment {
+public class UserInfoFragment extends Fragment {
 
   private View view;
   private TextView userInfoDisplayName, userInforDisplayEmail, userInforDisplayBooksRead;
@@ -36,7 +36,7 @@ public class UserInfo extends Fragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.user_info_fragment, container, false);
+    view = inflater.inflate(R.layout.fragment_user_info, container, false);
     setHasOptionsMenu(true);
     initViews();
     return view;
@@ -52,8 +52,7 @@ public class UserInfo extends Fragment {
 
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("home");
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }

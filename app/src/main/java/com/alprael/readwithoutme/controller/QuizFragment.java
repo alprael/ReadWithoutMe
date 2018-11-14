@@ -1,5 +1,7 @@
 package com.alprael.readwithoutme.controller;
 
+import android.arch.persistence.room.Update;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
+import com.alprael.readwithoutme.model.dao.UserDao;
+import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.User;
+import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 
 /**
  * This fragment inflates a quiz.
@@ -22,10 +28,6 @@ public class QuizFragment extends Fragment {
 
   /**
    * Main inflater of this fragment which initializes the views and sets and options menu.
-   * @param inflater
-   * @param container
-   * @param savedInstanceState
-   * @return
    */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,14 +50,13 @@ public class QuizFragment extends Fragment {
 
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("home");
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }
 
   private void goToInfo() {
-    UserInfo userInfo = new UserInfo();
+    UserInfoFragment userInfo = new UserInfoFragment();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
         .addToBackStack("info");
     transaction.replace(R.id.frag_container, userInfo);
@@ -64,8 +65,6 @@ public class QuizFragment extends Fragment {
 
   /**
    * Creates the options menu.
-   * @param menu
-   * @param inflater
    */
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -74,8 +73,6 @@ public class QuizFragment extends Fragment {
 
   /**
    * Defines what each item of the options menu does when selected.
-   * @param item
-   * @return
    */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -87,10 +84,28 @@ public class QuizFragment extends Fragment {
         goToInfo();
         break;
       case R.id.quiz_fragment_menu_done:
-        // TODO Increase booksRead by 1 and set time for book.
-        break;
+        UpdateTask updateTask = new UpdateTask();
+        updateTask.execute(1L);
+        goToHome();
     }
     return true;
   }
+
+  private class UpdateTask extends AsyncTask<Long, Void, Void> {
+
+
+    @Override
+    protected Void doInBackground(Long... longs) {
+      User user = RWMDatabase.getInstance(getContext()).getUserDao().selectUser(1);
+      long numberBooksRead = user.getNumberBooksRead();
+      user.setNumberBooksRead(++numberBooksRead);
+      RWMDatabase.getInstance(getContext()).getUserDao().update(user);
+      return null;
+    }
+  }
+
+
+
 }
+
 
