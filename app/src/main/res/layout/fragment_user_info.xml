@@ -9,13 +9,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:layout_margin="8dp">
+    android:layout_margin="16dp">
 
   <TextView
     android:id="@+id/user_info_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="16dp"
     android:layout_centerHorizontal="true"
     android:gravity="center_horizontal"
     android:text="User Info"
@@ -35,11 +35,11 @@
     android:id="@+id/user_info_display_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="88dp"
+    android:layout_marginEnd="24dp"
     android:layout_alignParentEnd="true"
     android:layout_alignTop="@+id/user_info_name"
     android:text="NameView"
-    android:textSize="16dp"
+    android:textSize="24dp"
     android:textColor="#000000"/>
   <TextView
     android:id="@+id/user_info_email"
@@ -59,7 +59,7 @@
       android:layout_alignTop="@+id/user_info_email"
       android:text="EmailView"
       android:textColor="#000000"
-      android:textSize="16dp"/>
+      android:textSize="24dp"/>
   <TextView
     android:id="@+id/user_info_books_read"
     android:layout_width="wrap_content"
@@ -68,16 +68,16 @@
     android:layout_marginBottom="24dp"
     android:layout_below="@+id/user_info_email"
     android:text="Number of Books Read:"
-    android:textSize="16dp"
+    android:textSize="24dp"
     android:textColor="#000000"/>
   <TextView
     android:id="@+id/user_info_display_books_read"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignStart="@+id/user_info_display_name"
+    android:layout_alignEnd="@+id/user_info_display_name"
     android:layout_alignTop="@+id/user_info_books_read"
     android:text="#"
-    android:textSize="16dp"
+    android:textSize="24dp"
     android:textColor="#000000"/>
 
   </RelativeLayout>

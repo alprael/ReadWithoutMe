@@ -1,6 +1,5 @@
-package com.alprael.readwithoutme.controller;
+package com.alprael.readwithoutme.view;
 
-import android.arch.persistence.room.Update;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,24 +10,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
-import com.alprael.readwithoutme.model.dao.UserDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
-import com.alprael.readwithoutme.model.entity.User;
-import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 
 /**
- * This fragment inflates a quiz.
+ * This fragment inflates the contents of a quiz in relation to the book that was being read.
+ * It also shares the timer's end result from the chronometer in the previous fragment.
  */
 public class QuizFragment extends Fragment {
 
-  private TextView textView, timerText;
+  private TextView  timerText;
+  private WebView quizText;
   private View view;
 
-  /**
-   * Main inflater of this fragment which initializes the views and sets and options menu.
-   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -40,10 +36,9 @@ public class QuizFragment extends Fragment {
 
   private void initViews() {
     Bundle bundle = getArguments();
-    textView = view.findViewById(R.id.quiz_fragment_quiz_text);
-    textView.setText(getString(R.string.GreenBookQuestion1)
-        + getString(R.string.GreenBookQuestion2)
-        + getString(R.string.GreenBookQuestion3));
+    quizText = view.findViewById(R.id.quiz_fragment_quiz_wv);
+    assert getArguments() != null;
+    new QueryTask().execute(getArguments().getLong("quiz_id"));
     timerText = view.findViewById(R.id.quiz_fragment_timer_text);
     timerText.setText(String.format("Time: %s", bundle.getLong(getString(R.string.seconds_key))));
   }
@@ -63,17 +58,11 @@ public class QuizFragment extends Fragment {
     transaction.commit();
   }
 
-  /**
-   * Creates the options menu.
-   */
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     getActivity().getMenuInflater().inflate(R.menu.quiz_fragment_menu, menu);
   }
 
-  /**
-   * Defines what each item of the options menu does when selected.
-   */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
@@ -83,29 +72,28 @@ public class QuizFragment extends Fragment {
       case R.id.quiz_fragment_menu_user_info:
         goToInfo();
         break;
-      case R.id.quiz_fragment_menu_done:
-        UpdateTask updateTask = new UpdateTask();
-        updateTask.execute(1L);
-        goToHome();
     }
     return true;
   }
 
-  private class UpdateTask extends AsyncTask<Long, Void, Void> {
 
+  private class QueryTask extends AsyncTask<Long, Void, String> {
 
     @Override
-    protected Void doInBackground(Long... longs) {
-      User user = RWMDatabase.getInstance(getContext()).getUserDao().selectUser(1);
-      long numberBooksRead = user.getNumberBooksRead();
-      user.setNumberBooksRead(++numberBooksRead);
-      RWMDatabase.getInstance(getContext()).getUserDao().update(user);
-      return null;
+    protected String doInBackground(Long... longs) {
+      return RWMDatabase.getInstance(getContext()).getQuizDao().selectFileName(longs[0]);
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+      if (s == null) {
+        quizText.loadUrl("file:///android_asset/images/noQuiz404.html");
+      } else {
+        quizText.loadUrl("file:///android_asset/quizzes/" + s);
+        super.onPostExecute(s);
+      }
     }
   }
-
-
-
 }
 
 

@@ -1,4 +1,4 @@
-package com.alprael.readwithoutme.controller;
+package com.alprael.readwithoutme.view;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,10 +17,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Chronometer;
 import com.alprael.readwithoutme.R;
+import com.alprael.readwithoutme.controller.MainActivity;
+import com.alprael.readwithoutme.model.dao.BooksReadDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.Book;
+import com.alprael.readwithoutme.model.entity.BooksRead;
+import com.alprael.readwithoutme.model.entity.Quiz;
+import java.util.List;
 
 /**
- * Fragment that inflates the contents of the books and chronometer.
+ * Fragment that inflates the contents of the books in a web view and inflates
+ * a view for the chronometer.
+ * This fragment is also used to view every book in the database, and set timers from the
+ * chronometer to each book, and increment the BooksRead entity according to the current user.
  */
 public class BookFragment extends Fragment {
 
@@ -29,15 +38,24 @@ public class BookFragment extends Fragment {
   private Chronometer chronometer;
   private boolean running;
   private long pauseOffset;
+  private Bundle bundle;
+  private long seconds;
+  private List<Quiz> listQuiz;
+  private Bundle quizBundle, quizBundle1;
+  private QuizFragment quizFragment;
+  private BooksRead booksRead;
+  private Book book;
 
-  /**
-   * Main inflater of this fragment which initializes the views, initializes the chronometer,
-   * and sets an options menu.
-   * @param inflater
-   * @param container
-   * @param savedInstanceState
-   * @return
-   */
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    bundle = getArguments();
+    quizBundle = new Bundle();
+    quizFragment = new QuizFragment();
+    booksRead = new BooksRead();
+  }
+
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
@@ -58,7 +76,7 @@ public class BookFragment extends Fragment {
   private void initView() {
     webView = view.findViewById(R.id.book_fragment_webView);
     webView.setWebViewClient(new WebViewClient());
-    new QueryTask().execute(1L);
+    new QueryTask().execute(getArguments().getLong("book_id"));
   }
 
   private void startChronometer() {
@@ -92,11 +110,7 @@ public class BookFragment extends Fragment {
 
   private void goToQuiz() {
     pauseChronometer();
-    long seconds = pauseOffset / 1000;
-    Bundle bundle = new Bundle();
-    bundle.putLong(getString(R.string.seconds_key), seconds);
-    QuizFragment quizFragment = new QuizFragment();
-    quizFragment.setArguments(bundle);
+    quizBundle();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
         .addToBackStack("quiz");
     transaction.replace(R.id.frag_container, quizFragment);
@@ -105,26 +119,17 @@ public class BookFragment extends Fragment {
 
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
+    assert getFragmentManager() != null;
     FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }
 
-  /**
-   * Creates the options menu.
-   * @param menu
-   * @param inflater
-   */
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     getActivity().getMenuInflater().inflate(R.menu.book_fragment_menu, menu);
   }
 
-  /**
-   * Defines what each item of the options menu does when selected.
-   * @param item
-   * @return
-   */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
@@ -141,8 +146,8 @@ public class BookFragment extends Fragment {
         goToQuiz();
         break;
       case R.id.book_fragment_menu_book_info:
-      goToInfo();
-      break;
+        goToInfo();
+        break;
       case R.id.book_fragment_menu_home:
         goToHome();
         break;
@@ -150,18 +155,57 @@ public class BookFragment extends Fragment {
     return true;
   }
 
-  private class QueryTask extends AsyncTask<Long, Void, String> {
+  private Bundle quizBundle() {
+    seconds = pauseOffset / 1000;
+    quizBundle.putLong(getString(R.string.seconds_key), seconds);
+    quizBundle.putLong("quiz_id", book.getQuizId());
+    booksRead.setUserId(((MainActivity) getActivity()).getUserId());
+    booksRead.setBookId(getArguments().getLong("book_id"));
+    new BookTask().execute(booksRead);
+    quizFragment.setArguments(quizBundle);
+    return quizBundle;
+  }
+
+
+  private class QueryTask extends AsyncTask<Long, Void, Book> {
 
     @Override
-    protected String doInBackground(Long... longs) {
-      return RWMDatabase.getInstance(getContext()).getBookDao().selectFileName(longs[0]);
+    protected Book doInBackground(Long... longs) {
+      return RWMDatabase.getInstance(getContext()).getBookDao().selectBook(longs[0]);
+    }
 
+
+    @Override
+    protected void onPostExecute(Book b) {
+      webView.loadUrl("file:///android_asset/books/" + b.getFileName());
+      book = b;
+    }
+  }
+
+  private class BookTask extends AsyncTask<BooksRead, Void, Long> {
+
+    @Override
+    protected Long doInBackground(BooksRead... booksReads) {
+      RWMDatabase db = RWMDatabase.getInstance(getContext());
+      BooksReadDao booksReadDao = db.getBooksReadDao();
+      booksReadDao.selectAll();
+      booksRead.setBookReadTime(pauseOffset/1000);
+      booksReadDao.insert(booksReads[0]);
+      return null;
+    }
+
+  }
+
+  private class QuizTask extends AsyncTask<Void, Void, List<Quiz>> {
+
+    @Override
+    protected List<Quiz> doInBackground(Void... voids) {
+      return RWMDatabase.getInstance(getContext()).getQuizDao().selectAll();
     }
 
     @Override
-    protected void onPostExecute(String s) {
-      webView.loadUrl( "file:///android_asset/books/" + s);
-      super.onPostExecute(s);
+    protected void onPostExecute(List<Quiz> quizzes) {
+      listQuiz = quizzes;
     }
   }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:id="@+id/main_book_fragment_gv"
+  android:columnWidth="88dp"
+  android:numColumns="auto_fit"
+  android:verticalSpacing="24dp"
+  android:horizontalSpacing="24dp"
+  android:layout_margin="16dp"
+  android:gravity="center"
+  android:background="#AED581"/>
+
+

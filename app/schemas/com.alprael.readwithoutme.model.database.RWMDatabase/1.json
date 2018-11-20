@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "aa1ce98f09310506738e341c18d12f9a",
+    "identityHash": "36f1ef5f8e7707ecebdc9d45f098762a",
     "entities": [
       {
         "tableName": "books",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT NOT NULL COLLATE NOCASE, `author_name` TEXT NOT NULL COLLATE NOCASE, `book_name` TEXT NOT NULL COLLATE NOCASE)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`book_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT NOT NULL COLLATE NOCASE, `author_name` TEXT NOT NULL COLLATE NOCASE, `book_name` TEXT NOT NULL COLLATE NOCASE, `resource_image` INTEGER NOT NULL COLLATE NOCASE, `quiz_id` INTEGER NOT NULL COLLATE NOCASE)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,6 +31,18 @@
             "columnName": "book_name",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "resImage",
+            "columnName": "resource_image",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quizId",
+            "columnName": "quiz_id",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -53,7 +65,7 @@
       },
       {
         "tableName": "users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `display_name` TEXT NOT NULL COLLATE NOCASE, `email` TEXT NOT NULL COLLATE NOCASE, `number_books_read` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `display_name` TEXT NOT NULL COLLATE NOCASE, `email` TEXT NOT NULL COLLATE NOCASE)",
         "fields": [
           {
             "fieldPath": "id",
@@ -72,12 +84,6 @@
             "columnName": "email",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "numberBooksRead",
-            "columnName": "number_books_read",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -88,12 +94,119 @@
         },
         "indices": [
           {
-            "name": "index_users_display_name",
+            "name": "index_users_display_name_user_id",
             "unique": true,
             "columnNames": [
-              "display_name"
+              "display_name",
+              "user_id"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_users_display_name` ON `${TABLE_NAME}` (`display_name`)"
+            "createSql": "CREATE UNIQUE INDEX `index_users_display_name_user_id` ON `${TABLE_NAME}` (`display_name`, `user_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "booksRead",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`books_read_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `book_id` INTEGER NOT NULL, `book_read_time` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`book_id`) REFERENCES `books`(`book_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "books_read_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookId",
+            "columnName": "book_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bookReadTime",
+            "columnName": "book_read_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "books_read_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_booksRead_books_read_id_user_id",
+            "unique": true,
+            "columnNames": [
+              "books_read_id",
+              "user_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_booksRead_books_read_id_user_id` ON `${TABLE_NAME}` (`books_read_id`, `user_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "users",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "user_id"
+            ],
+            "referencedColumns": [
+              "user_id"
+            ]
+          },
+          {
+            "table": "books",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "book_id"
+            ],
+            "referencedColumns": [
+              "book_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "quiz",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`quiz_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "quiz_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fileName",
+            "columnName": "file_name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "quiz_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_quiz_quiz_id",
+            "unique": true,
+            "columnNames": [
+              "quiz_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_quiz_quiz_id` ON `${TABLE_NAME}` (`quiz_id`)"
           }
         ],
         "foreignKeys": []
@@ -101,7 +214,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"aa1ce98f09310506738e341c18d12f9a\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"36f1ef5f8e7707ecebdc9d45f098762a\")"
     ]
   }
 }

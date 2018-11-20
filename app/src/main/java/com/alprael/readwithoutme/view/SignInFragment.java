@@ -1,4 +1,4 @@
-package com.alprael.readwithoutme.controller;
+package com.alprael.readwithoutme.view;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alprael.readwithoutme.R;
+import com.alprael.readwithoutme.controller.MainActivity;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
 import com.alprael.readwithoutme.model.entity.User;
 import com.google.android.gms.auth.api.Auth;
@@ -29,7 +30,9 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 /**
- * Main fragment with Google sign in.
+ * Main startup fragment. This fragment holds all the necessary methods to allow access to the
+ * rest of the app through Google Sign in. This fragment also creates a new user upon
+ * successful completion of signing in.
  */
 public class SignInFragment extends Fragment implements View.OnClickListener,
     GoogleApiClient.OnConnectionFailedListener {
@@ -44,13 +47,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
 
   private static final int REQ_CODE = 9001;
 
-  /**
-   * Main inflater of this fragment which initializes the views, buttons, and builds Google Sign In.
-   * @param inflater
-   * @param container
-   * @param savedInstanceState
-   * @return
-   */
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -62,9 +58,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     return view;
   }
 
-  /**
-   * Begins the connection to Google Sign In to allow for signing in.
-   */
   @Override
   public void onStart() {
     GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -75,10 +68,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     super.onStart();
   }
 
-  /**
-   * Methods for each on screen button for this fragment.
-   * @param view
-   */
+
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
@@ -94,10 +84,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     }
   }
 
-  /**
-   * If the connection to Google sign in fails, a Toast shows.
-   * @param connectionResult
-   */
   @Override
   public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     Toast.makeText(getActivity(), "That didn't work", Toast.LENGTH_LONG).show();
@@ -169,13 +155,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     }
   }
 
-  /**
-   * If the result is successful, this methods hands off the result to the handler. Otherwise,
-   * connection failed.
-   * @param requestCode
-   * @param resultCode
-   * @param data
-   */
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);

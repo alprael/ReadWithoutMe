@@ -7,21 +7,18 @@ import android.widget.FrameLayout;
 import com.alprael.readwithoutme.R;
 import com.alprael.readwithoutme.model.dao.BookDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
-import com.alprael.readwithoutme.model.entity.User;
+import com.alprael.readwithoutme.view.SignInFragment;
 
 /**
  * The MainActivity for the project, which will be inflated by a fragment.
- * Read Without Me database builder also occurs here.
+ * Read Without Me database is also built in this activity.
  */
 public class MainActivity extends AppCompatActivity {
 
   private RWMDatabase rWMDatabase;
   private long userId;
 
-  /**
-   * Inflates the view with a container for the fragment. Also initializes the database builder.
-   * @param savedInstanceState
-   */
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -48,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     this.userId = userId;
   }
 
+
+
   private class BookTask extends AsyncTask<Void, Void, Void> {
 
     @Override
@@ -61,10 +60,4 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-/**
- * get imageButton put imageButton in rWMDatabase have app access imageButton through button press Have
- * the imageButton as a scrollable interface have a timer that times length of the imageButton being
- * open have a button that exits from the imageButton make quiz for imageButton put quiz in rWMDatabase
- * have a new page that leads to a quiz on that imageButton when imageButton is finished reading.
- * close quiz when done.
- */
+

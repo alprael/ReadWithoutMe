@@ -10,7 +10,7 @@ import com.alprael.readwithoutme.model.entity.Book;
 import java.util.List;
 
 /**
- * Book Dao for Read Without Me database.
+ * Book Dao interface for the Book entity in the Read Without Me database.
  */
 @Dao
 public interface BookDao {
@@ -28,11 +28,21 @@ public interface BookDao {
   @Query("SELECT * FROM books ORDER BY book_name ASC")
   List<Book> select();
 
-  @Query("SELECT * FROM books WHERE book_id=:book_id")
-  Book selectBook(long book_id);
+  @Query("SELECT * FROM books WHERE book_id=:bookId")
+  Book selectBook(long bookId);
 
   @Query("SELECT file_name FROM books WHERE book_id=:bookId")
   String selectFileName(long bookId);
+
+  @Query("SELECT resource_image FROM books WHERE book_id=:bookId")
+  int selectAllResImage(long bookId);
+
+  @Query("SELECT resource_image FROM books WHERE resource_image=:resImage")
+  int selectResImage(String resImage);
+
+  @Query("SELECT * FROM books WHERE quiz_id=:quizId")
+  Book selectAllQuiz(long quizId);
+
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(Book books);

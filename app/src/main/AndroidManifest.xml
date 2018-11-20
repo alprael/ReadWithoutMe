@@ -12,7 +12,9 @@
     android:roundIcon="@mipmap/book192"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".controller.MainActivity">
+    <activity android:name=".controller.MainActivity"
+      android:screenOrientation="portrait">
+
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 

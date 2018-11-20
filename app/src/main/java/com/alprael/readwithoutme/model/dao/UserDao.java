@@ -10,7 +10,7 @@ import com.alprael.readwithoutme.model.entity.User;
 import java.util.List;
 
 /**
- * Users Table in Read Without Me database.
+ * User Dao for the User Entity in the Read Without Me database.
  */
 @Dao
 public interface UserDao {
@@ -36,9 +36,6 @@ public interface UserDao {
 
   @Query("SELECT * FROM users WHERE display_name=:displayName")
   User selectDisplayName(String displayName);
-
-  @Query("SELECT * FROM users WHERE number_books_read=:numberBooksRead")
-  User selectNumberBooksRead(long numberBooksRead);
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(User users);

@@ -1,4 +1,4 @@
-package com.alprael.readwithoutme.controller;
+package com.alprael.readwithoutme.view;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
+import com.alprael.readwithoutme.controller.MainActivity;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
 import com.alprael.readwithoutme.model.entity.User;
 
@@ -25,13 +26,6 @@ public class UserInfoFragment extends Fragment {
   private View view;
   private TextView userInfoDisplayName, userInforDisplayEmail, userInforDisplayBooksRead;
 
-  /**
-   * Main inflater of this fragment which initializes the views and sets an options menu.
-   * @param inflater
-   * @param container
-   * @param savedInstanceState
-   * @return
-   */
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -57,21 +51,11 @@ public class UserInfoFragment extends Fragment {
     transaction.commit();
   }
 
-  /**
-   * Creates the options menu.
-   * @param menu
-   * @param inflater
-   */
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     getActivity().getMenuInflater().inflate(R.menu.user_info_menu, menu);
   }
 
-  /**
-   * Defines what each item of the options menu does when selected.
-   * @param item
-   * @return
-   */
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
