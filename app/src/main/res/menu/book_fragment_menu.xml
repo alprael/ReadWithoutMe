@@ -13,19 +13,19 @@
     app:showAsAction="always"
     android:icon="@drawable/ic_pause"/>
   <item
-    android:id="@+id/book_fragment_menu_reset_button"
-    app:showAsAction="never"
-    android:title="@string/reset"/>
-  <item
     android:id="@+id/book_fragment_menu_quiz_button"
     android:title="@string/quiz"
     app:showAsAction="never"/>
   <item
     android:id="@+id/book_fragment_menu_book_info"
-    android:title="Info"
+    android:title="@string/info"
     app:showAsAction="never"/>
   <item
     android:id="@+id/book_fragment_menu_home"
-    android:title="Home"
+    android:title="@string/home"
     app:showAsAction="never"/>
+  <item
+    android:id="@+id/book_fragment_menu_reset_button"
+    app:showAsAction="never"
+    android:title="@string/reset"/>
 </menu>

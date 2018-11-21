@@ -23,8 +23,8 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:gravity="center_horizontal"
-      android:text="Display Name"
-      android:textSize="32dp"/>
+      android:text="@string/display_name"
+      android:textSize="32sp"/>
 
     <TextView
       android:id="@+id/display_email"
@@ -35,8 +35,8 @@
       android:layout_marginRight="8dp"
       android:textColor="#000000"
       android:gravity="center_horizontal"
-      android:text="Display Email"
-      android:textSize="24dp"/>
+      android:text="@string/display_email"
+      android:textSize="24sp"/>
 
     <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         android:id="@+id/sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Out"
+        android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/continue_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Confirm"
+        android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

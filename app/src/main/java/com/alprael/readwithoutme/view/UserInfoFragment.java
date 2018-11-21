@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
@@ -24,7 +25,7 @@ import com.alprael.readwithoutme.model.entity.User;
 public class UserInfoFragment extends Fragment {
 
   private View view;
-  private TextView userInfoDisplayName, userInforDisplayEmail, userInforDisplayBooksRead;
+  private TextView userInfoDisplayName, userInfoDisplayEmail, userInfoDisplayBooksRead;
 
   @Nullable
   @Override
@@ -38,8 +39,14 @@ public class UserInfoFragment extends Fragment {
 
   private void initViews() {
     userInfoDisplayName = view.findViewById(R.id.user_info_display_name);
-    userInforDisplayEmail = view.findViewById(R.id.user_info_display_email);
-    userInforDisplayBooksRead = view.findViewById(R.id.user_info_display_books_read);
+    userInfoDisplayEmail = view.findViewById(R.id.user_info_display_email);
+    userInfoDisplayBooksRead = view.findViewById(R.id.user_info_books_read);
+    userInfoDisplayBooksRead.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+
+      }
+    });
     QueryTask queryTask = new QueryTask();
     queryTask.execute();
   }
@@ -78,7 +85,7 @@ public class UserInfoFragment extends Fragment {
     @Override
     protected void onPostExecute(User user) {
       userInfoDisplayName.setText(user.getDisplayName());
-      userInforDisplayEmail.setText(user.getEmail());
+      userInfoDisplayEmail.setText(user.getEmail());
     }
   }
 }

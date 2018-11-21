@@ -20,7 +20,8 @@ import com.alprael.readwithoutme.model.entity.User;
 /**
  * The main Read Without Me database extending Room.
  */
-@Database(entities = {Book.class, User.class, BooksRead.class, Quiz.class}, version = 1, exportSchema = true)
+@Database(entities = {Book.class, User.class, BooksRead.class, Quiz.class},
+    version = 1, exportSchema = true)
 public abstract class RWMDatabase extends RoomDatabase {
 
   private static final String DATABASE_NAME = "rwm_db";

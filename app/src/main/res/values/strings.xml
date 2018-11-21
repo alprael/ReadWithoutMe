@@ -2,11 +2,21 @@
   <string name="app_name">Read Without Me</string>
   <string name="book">Book Text</string>
   <string name="quiz">Quiz</string>
-  <string name="GreenBookQuestion1">What color did the book say Jerry was?\n\n\n</string>
-  <string name="GreenBookQuestion2">What does Dina love to do?\n\n\n</string>
-  <string name="GreenBookQuestion3">What mattered at the end?</string>
   <string name="start">Start</string>
   <string name="stop">Stop</string>
   <string name="reset">Reset</string>
   <string name="seconds_key">Seconds:</string>
+  <string name="home">Home</string>
+  <string name="info">Info</string>
+  <string name="books_read">Books Read</string>
+  <string name="emailview">EmailView</string>
+  <string name="email">Email:</string>
+  <string name="nameview">NameView</string>
+  <string name="name">Name:</string>
+  <string name="user_info">User Info</string>
+  <string name="display_name">Display Name</string>
+  <string name="display_email">Display Email</string>
+  <string name="log_out">Log Out</string>
+  <string name="confirm">Confirm</string>
+  <string name="textview">TextView</string>
 </resources>
