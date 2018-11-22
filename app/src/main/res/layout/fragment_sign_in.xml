@@ -48,13 +48,13 @@
         android:layout_height="wrap_content"
         android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/continue_button"
+        app:layout_constraintEnd_toStartOf="@+id/confirm_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:shadowColor="#000000"/>
 
       <Button
-        android:id="@+id/continue_button"
+        android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

@@ -20,8 +20,7 @@
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:gravity="center_vertical"
-    android:textSize="24sp"
-    android:visibility="gone"/>
+    android:textSize="24sp"/>
 
   <WebView
     android:id="@+id/book_fragment_webView"

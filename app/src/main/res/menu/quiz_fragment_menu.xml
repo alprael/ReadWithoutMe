@@ -3,9 +3,9 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/quiz_fragment_menu_home"
-    android:title="@string/home"
-    app:showAsAction="never"/>
+    android:id="@+id/quiz_fragment_menu_done"
+    android:title="@string/done"
+    app:showAsAction="always"/>
 
   <item
     android:id="@+id/quiz_fragment_menu_user_info"

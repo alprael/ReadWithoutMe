@@ -35,14 +35,18 @@ public interface BooksReadDao {
   @Query("SELECT * FROM booksRead WHERE user_id=:userId")
   BooksRead selectAllUserId(long userId);
 
-  @Query("SELECT user_id FROM booksRead WHERE user_id=:userId")
+  @Query("SELECT user_id FROM users WHERE user_id=:userId")
   Long selectUserId(long userId);
 
-  @Query("SELECT book_id FROM booksRead WHERE book_id=:bookId")
+  @Query("SELECT book_id FROM books WHERE book_id=:bookId")
   Long selectBookId(long bookId);
 
   @Query("SELECT * FROM booksRead WHERE book_read_time=:bookReadTime")
   BooksRead selectAllBookReadTime(long bookReadTime);
+
+  @Query("SELECT * FROM booksRead WHERE book_name=:bookName")
+  BooksRead selectAllBookName(String bookName);
+
 
 
   @Update(onConflict = OnConflictStrategy.REPLACE)

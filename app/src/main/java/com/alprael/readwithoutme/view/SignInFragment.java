@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.alprael.readwithoutme.R;
 import com.alprael.readwithoutme.controller.MainActivity;
+import com.alprael.readwithoutme.model.dao.BooksReadDao;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.BooksRead;
 import com.alprael.readwithoutme.model.entity.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -41,8 +43,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   private TextView Name, Email;
   private GoogleApiClient googleApiClient;
   private LinearLayout displayInfo;
-  private Button signOutButton;
-  private Button continueButton;
+  private Button signOutButton, confirmButton;
   private View view;
 
   private static final int REQ_CODE = 9001;
@@ -78,8 +79,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       case R.id.sign_out:
         signOut();
         break;
-      case R.id.continue_button:
-        continueOn();
+      case R.id.confirm_button:
+        confirm();
         break;
     }
   }
@@ -103,8 +104,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     signOutButton = view.findViewById(R.id.sign_out);
     signOutButton.setOnClickListener(this);
 
-    continueButton = view.findViewById(R.id.continue_button);
-    continueButton.setOnClickListener(this);
+    confirmButton = view.findViewById(R.id.confirm_button);
+    confirmButton.setOnClickListener(this);
   }
 
   private void signIn() {
@@ -121,7 +122,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
     });
   }
 
-  private void continueOn() {
+  private void confirm() {
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction transaction = fragmentManager.beginTransaction();
     transaction.replace(R.id.frag_container, new MainBookFragment());
@@ -137,8 +138,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       Name.setText(name);
       Email.setText(email);
       updateUI(true);
-      QueryTask queryTask = new QueryTask();
-      queryTask.execute(email, name);
+      new QueryTask().execute(email, name);
     } else {
       Toast.makeText(getActivity(), "That didn't work.", Toast.LENGTH_LONG).show();
       updateUI(false);
@@ -173,7 +173,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       if (user==null) {
         user = new User();
         user.setEmail(strings[0]);
-        user.setDisplayName(strings[1]);
+        user.setUserName(strings[1]);
         return RWMDatabase.getInstance(getActivity()).getUserDao().insert(user);
       }
       return user.getId();
@@ -184,6 +184,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       ((MainActivity) getActivity()).setUserId(aLong);
     }
   }
+
 }
 
 

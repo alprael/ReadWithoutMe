@@ -1,5 +1,6 @@
 package com.alprael.readwithoutme.view;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,13 +12,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
+import com.alprael.readwithoutme.controller.ListAdapter;
 import com.alprael.readwithoutme.controller.MainActivity;
 import com.alprael.readwithoutme.model.database.RWMDatabase;
+import com.alprael.readwithoutme.model.entity.BooksRead;
 import com.alprael.readwithoutme.model.entity.User;
+import java.util.List;
 
 /**
  * Fragment that inflates the view with the user's info.
@@ -26,6 +30,9 @@ public class UserInfoFragment extends Fragment {
 
   private View view;
   private TextView userInfoDisplayName, userInfoDisplayEmail, userInfoDisplayBooksRead;
+  private ListView userInfoListView;
+  private List<BooksRead> listBooksRead;
+  private Context context;
 
   @Nullable
   @Override
@@ -34,6 +41,7 @@ public class UserInfoFragment extends Fragment {
     view = inflater.inflate(R.layout.fragment_user_info, container, false);
     setHasOptionsMenu(true);
     initViews();
+    new BooksReadTask().execute();
     return view;
   }
 
@@ -41,19 +49,19 @@ public class UserInfoFragment extends Fragment {
     userInfoDisplayName = view.findViewById(R.id.user_info_display_name);
     userInfoDisplayEmail = view.findViewById(R.id.user_info_display_email);
     userInfoDisplayBooksRead = view.findViewById(R.id.user_info_books_read);
-    userInfoDisplayBooksRead.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-
-      }
-    });
     QueryTask queryTask = new QueryTask();
     queryTask.execute();
   }
 
+  private void initListView() {
+    userInfoListView = view.findViewById(R.id.user_info_books_read_lv);
+    final ListAdapter listAdapter = new ListAdapter(getContext(), listBooksRead);
+    userInfoListView.setAdapter(listAdapter);
+  }
+
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack(null);
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }
@@ -77,15 +85,29 @@ public class UserInfoFragment extends Fragment {
 
     @Override
     protected User doInBackground(Void... voids) {
-      User user = RWMDatabase.getInstance(getContext()).getUserDao().selectUser(
+      User user = RWMDatabase.getInstance(getContext()).getUserDao().selectAllUser(
           ((MainActivity) getActivity()).getUserId());
       return user;
     }
 
     @Override
     protected void onPostExecute(User user) {
-      userInfoDisplayName.setText(user.getDisplayName());
+      userInfoDisplayName.setText(user.getUserName());
       userInfoDisplayEmail.setText(user.getEmail());
+    }
+  }
+
+  private class BooksReadTask extends AsyncTask<Void, Void, List<BooksRead>> {
+
+    @Override
+    protected List<BooksRead> doInBackground(Void... voids) {
+      return RWMDatabase.getInstance(getContext()).getBooksReadDao().selectAll();
+    }
+
+    @Override
+    protected void onPostExecute(List<BooksRead> booksReads) {
+      listBooksRead = booksReads;
+      initListView();
     }
   }
 }

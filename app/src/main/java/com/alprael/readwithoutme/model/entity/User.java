@@ -13,7 +13,7 @@ import android.support.annotation.NonNull;
  */
 @Entity(
     tableName = "users",
-    indices = {@Index(value = {"display_name", "user_id"}, unique = true)})
+    indices = {@Index(value = {"user_name"}, unique = true)})
 public class User {
 
   @PrimaryKey(autoGenerate = true)
@@ -21,8 +21,8 @@ public class User {
   public long id;
 
   @NonNull
-  @ColumnInfo(name = "display_name", collate = ColumnInfo.NOCASE)
-  private String displayName;
+  @ColumnInfo(name = "user_name", collate = ColumnInfo.NOCASE)
+  private String userName;
 
   @NonNull
   @ColumnInfo(name = "email", collate = ColumnInfo.NOCASE)
@@ -50,16 +50,16 @@ public class User {
    * @return
    */
   @NonNull
-  public String getDisplayName() {
-    return displayName;
+  public String getUserName() {
+    return userName;
   }
 
   /**
    * Allows rest of project to set a display name for the current user.
-   * @param displayName
+   * @param userName
    */
-  public void setDisplayName(@NonNull String displayName) {
-    this.displayName = displayName;
+  public void setUserName(@NonNull String userName) {
+    this.userName = userName;
   }
 
   /**

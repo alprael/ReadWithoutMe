@@ -58,7 +58,7 @@ public class MainBookFragment extends Fragment {
         bundle.putLong("book_id",adapter.getItem(position).getId());
         bookFragment.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction()
-            .addToBackStack("info");
+            .addToBackStack(null);
         transaction.replace(R.id.frag_container, bookFragment);
         transaction.commit();
         Toast.makeText(getContext(), "Make sure to press the start button before reading!",
@@ -69,8 +69,7 @@ public class MainBookFragment extends Fragment {
 
   private void goToInfo() {
     UserInfoFragment userInfo = new UserInfoFragment();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("info");
+    FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack(null);
     transaction.replace(R.id.frag_container, userInfo);
     transaction.commit();
   }

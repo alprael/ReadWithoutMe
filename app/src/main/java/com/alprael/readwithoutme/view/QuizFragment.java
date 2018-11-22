@@ -45,7 +45,7 @@ public class QuizFragment extends Fragment {
 
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
-    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack(null);
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }
@@ -53,7 +53,7 @@ public class QuizFragment extends Fragment {
   private void goToInfo() {
     UserInfoFragment userInfo = new UserInfoFragment();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("info");
+        .addToBackStack(null);
     transaction.replace(R.id.frag_container, userInfo);
     transaction.commit();
   }
@@ -66,7 +66,7 @@ public class QuizFragment extends Fragment {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case R.id.quiz_fragment_menu_home:
+      case R.id.quiz_fragment_menu_done:
         goToHome();
         break;
       case R.id.quiz_fragment_menu_user_info:

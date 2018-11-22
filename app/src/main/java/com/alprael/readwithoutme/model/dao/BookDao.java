@@ -34,6 +34,9 @@ public interface BookDao {
   @Query("SELECT file_name FROM books WHERE book_id=:bookId")
   String selectFileName(long bookId);
 
+  @Query("SELECT * FROM books WHERE file_name=:fileName")
+  Book selectAllFileName(String fileName);
+
   @Query("SELECT resource_image FROM books WHERE book_id=:bookId")
   int selectAllResImage(long bookId);
 

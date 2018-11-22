@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "36f1ef5f8e7707ecebdc9d45f098762a",
+    "identityHash": "79c9f4e9d26db112410d07faf7d18774",
     "entities": [
       {
         "tableName": "books",
@@ -65,7 +65,7 @@
       },
       {
         "tableName": "users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `display_name` TEXT NOT NULL COLLATE NOCASE, `email` TEXT NOT NULL COLLATE NOCASE)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_name` TEXT NOT NULL COLLATE NOCASE, `email` TEXT NOT NULL COLLATE NOCASE)",
         "fields": [
           {
             "fieldPath": "id",
@@ -74,8 +74,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "displayName",
-            "columnName": "display_name",
+            "fieldPath": "userName",
+            "columnName": "user_name",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -94,20 +94,19 @@
         },
         "indices": [
           {
-            "name": "index_users_display_name_user_id",
+            "name": "index_users_user_name",
             "unique": true,
             "columnNames": [
-              "display_name",
-              "user_id"
+              "user_name"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_users_display_name_user_id` ON `${TABLE_NAME}` (`display_name`, `user_id`)"
+            "createSql": "CREATE UNIQUE INDEX `index_users_user_name` ON `${TABLE_NAME}` (`user_name`)"
           }
         ],
         "foreignKeys": []
       },
       {
         "tableName": "booksRead",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`books_read_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `book_id` INTEGER NOT NULL, `book_read_time` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`book_id`) REFERENCES `books`(`book_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`books_read_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `book_id` INTEGER NOT NULL, `book_name` TEXT NOT NULL, `book_read_time` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`book_id`) REFERENCES `books`(`book_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -128,6 +127,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "bookName",
+            "columnName": "book_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "bookReadTime",
             "columnName": "book_read_time",
             "affinity": "INTEGER",
@@ -142,13 +147,15 @@
         },
         "indices": [
           {
-            "name": "index_booksRead_books_read_id_user_id",
+            "name": "index_booksRead_books_read_id_user_id_book_id_book_name",
             "unique": true,
             "columnNames": [
               "books_read_id",
-              "user_id"
+              "user_id",
+              "book_id",
+              "book_name"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_booksRead_books_read_id_user_id` ON `${TABLE_NAME}` (`books_read_id`, `user_id`)"
+            "createSql": "CREATE UNIQUE INDEX `index_booksRead_books_read_id_user_id_book_id_book_name` ON `${TABLE_NAME}` (`books_read_id`, `user_id`, `book_id`, `book_name`)"
           }
         ],
         "foreignKeys": [
@@ -214,7 +221,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"36f1ef5f8e7707ecebdc9d45f098762a\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"79c9f4e9d26db112410d07faf7d18774\")"
     ]
   }
 }

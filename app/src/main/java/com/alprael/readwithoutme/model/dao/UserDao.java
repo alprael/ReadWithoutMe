@@ -25,17 +25,18 @@ public interface UserDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   List<Long> insert(List<User> users);
 
-  @Query("SELECT * FROM users ORDER BY display_name ASC")
+  @Query("SELECT * FROM users ORDER BY user_name ASC")
   List<User> select();
 
   @Query("SELECT * FROM users WHERE user_id=:userId")
-  User selectUser(long userId);
+  User selectAllUser(long userId);
+
 
   @Query("SELECT * FROM users WHERE email=:email")
   User selectEmail(String email);
 
-  @Query("SELECT * FROM users WHERE display_name=:displayName")
-  User selectDisplayName(String displayName);
+  @Query("SELECT * FROM users WHERE user_name=:userName")
+  User selectUserName(String userName);
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
   int update(User users);

@@ -8,7 +8,7 @@
   <string name="seconds_key">Seconds:</string>
   <string name="home">Home</string>
   <string name="info">Info</string>
-  <string name="books_read">Books Read</string>
+  <string name="books_read">Books Read:</string>
   <string name="emailview">EmailView</string>
   <string name="email">Email:</string>
   <string name="nameview">NameView</string>
@@ -19,4 +19,5 @@
   <string name="log_out">Log Out</string>
   <string name="confirm">Confirm</string>
   <string name="textview">TextView</string>
+  <string name="done">Done</string>
 </resources>

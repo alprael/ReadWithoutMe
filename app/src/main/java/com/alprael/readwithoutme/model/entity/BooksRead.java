@@ -10,12 +10,13 @@ import android.support.annotation.NonNull;
 /**
  * BooksRead entity for the Read Without Me database.
  * This entity is the main connection between user and book.
- * It takes in a book_id and a user_id.
+ * It takes in a book_id with a book_name, and a user_id with a display_name
  * It does so only when the user has successfully read a book.
  */
 @Entity(
     tableName = "booksRead",
-    indices = {@Index(value = {"books_read_id", "user_id"}, unique = true)},
+    indices = {@Index(value = {"books_read_id", "user_id", "book_id", "book_name"},
+        unique = true)},
     foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "user_id",
         childColumns = "user_id"), @ForeignKey(entity = Book.class,
         parentColumns = "book_id", childColumns = "book_id")})
@@ -29,9 +30,14 @@ public class BooksRead {
   @ColumnInfo(name = "user_id")
   private long userId;
 
+
   @NonNull
   @ColumnInfo(name = "book_id")
   private long bookId;
+
+  @NonNull
+  @ColumnInfo(name = "book_name")
+  private String bookName;
 
   @NonNull
   @ColumnInfo(name = "book_read_time")
@@ -105,4 +111,24 @@ public class BooksRead {
   public void setBookReadTime(long bookReadTime) {
     this.bookReadTime = bookReadTime;
   }
+
+  /**
+   * Allows rest of project to grab the book name from the book entity in relation
+   * to the booksRead entity
+   * @return
+   */
+  @NonNull
+  public String getBookName() {
+    return bookName;
+  }
+
+  /**
+   * Allows rest of project to set a book name in relation to the booksRead entity
+   * (is already set from the book entity.)
+   * @param bookName
+   */
+  public void setBookName(@NonNull String bookName) {
+    this.bookName = bookName;
+  }
+
 }

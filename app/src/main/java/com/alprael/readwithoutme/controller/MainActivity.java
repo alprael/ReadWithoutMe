@@ -1,5 +1,6 @@
 package com.alprael.readwithoutme.controller;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.alprael.readwithoutme.view.SignInFragment;
 public class MainActivity extends AppCompatActivity {
 
   private RWMDatabase rWMDatabase;
+  private Context context;
   private long userId;
 
 

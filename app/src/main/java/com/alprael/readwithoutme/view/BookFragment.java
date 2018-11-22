@@ -23,6 +23,7 @@ import com.alprael.readwithoutme.model.database.RWMDatabase;
 import com.alprael.readwithoutme.model.entity.Book;
 import com.alprael.readwithoutme.model.entity.BooksRead;
 import com.alprael.readwithoutme.model.entity.Quiz;
+import com.alprael.readwithoutme.model.entity.User;
 import java.util.List;
 
 /**
@@ -103,7 +104,7 @@ public class BookFragment extends Fragment {
   private void goToInfo() {
     UserInfoFragment userInfo = new UserInfoFragment();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("info");
+        .addToBackStack(null);
     transaction.replace(R.id.frag_container, userInfo);
     transaction.commit();
   }
@@ -112,15 +113,14 @@ public class BookFragment extends Fragment {
     pauseChronometer();
     quizBundle();
     FragmentTransaction transaction = getFragmentManager().beginTransaction()
-        .addToBackStack("quiz");
+        .addToBackStack(null);
     transaction.replace(R.id.frag_container, quizFragment);
     transaction.commit();
   }
 
   private void goToHome() {
     MainBookFragment mainBookFragment = new MainBookFragment();
-    assert getFragmentManager() != null;
-    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack(null);
     transaction.replace(R.id.frag_container, mainBookFragment);
     transaction.commit();
   }
@@ -190,6 +190,7 @@ public class BookFragment extends Fragment {
       BooksReadDao booksReadDao = db.getBooksReadDao();
       booksReadDao.selectAll();
       booksRead.setBookReadTime(pauseOffset/1000);
+      booksRead.setBookName(book.getBookName());
       booksReadDao.insert(booksReads[0]);
       return null;
     }
