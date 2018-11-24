@@ -53,3 +53,6 @@ only API this app consumes.
 
 ## Wire Frames
 ![](ReadWithoutMeWireFrame.png "Wire Frames")
+
+## Physical Entity Relationship Diagram
+![](ReadWithoutMeERD.png "Entity Relationship Diagram")
