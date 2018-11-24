@@ -52,8 +52,16 @@ The last 3 implementations above are mostly for the use of Google Sign In. Googl
 only API this app consumes.
 
 ## User Stories
-As a mother I want to be able to keep track of my children's reading habits as I assign while I cook dinner.
-
+* As a parent I want to be able to keep track of my children's reading while I cook dinner.
+  * As a parent I want to able to be able to see what books my children have read, and how long it 
+  took them.
+  * As a parent, I want to be able to know if my children remembered the information they just read.
+  * As a parent I want to actually know if My child read when I told them to.
+* As a teacher I want to be able to keep track to whether or not my students read the assigned 
+  reading.
+  * As a teacher I want to keep track of my students reading level by understanding how long it took
+  them to read an assigned reading.
+  * As a teach I want to be able to see if my students are learning from the reading I assign.
 
 ## Wire Frames
 ![](ReadWithoutMeWireFrame.png "Wire Frames")
