@@ -1,35 +1,52 @@
 # Read Without Me
-Read Without Me is a nice little reading app with the basic function of keeping track
-of people's reading behavior and reading comprehension.
-Allow me to start off with the reasoning behind why I created this
-app before I explain what it does.
+Read Without Me is a nice little Android reading app with the basic function of keeping track of
+your children's reading behavior when you're not looking, and with a complex function of keeping track
+of people's reading behavior and reading comprehension. Allow me to start off with the reasoning 
+behind why I created this app before I explain what it does.
 
 When I started android development I came in with the idea that I wanted to develop
-apps that make people's lives just a little bit easier. I truly believe that this app,
-even in it's current form, embodies that philosophy.
+apps that make people's lives just a little bit easier. As you'll read from my User Stories down 
+below, you'll see what my true thought process was for the creation of this app. I truly believe 
+that this app in it's current form, embodies that philosophy.
 
-Read Without Me implements Google Sign In. Once you successfully sign in, you're instantly a new 
-user and ready to continue one to the rest of the appThe app itself holds a number of books already
-in the app. Each book may have an associated quiz. What I mean is that not every book has a quiz, 
-instead, a default quiz is given. Some books do have associated quizzes that ask more direct 
-questions about the contents of the book itself.
+Read Without Me is meant for parents or people in a supervisory roles to keep track of one's reading
+habits and reading comprehension indirectly. There are a few books on the device ready for users to
+engage in. Each book has a timer, which I believe is an important function to tracking a person 
+reading level. Of course this timer can be easily manipulated, but still an important function. 
+Along with keeping track of one's reading, it's equally important to know if that one retained the 
+information. Each book has a quiz associated to it. Either it has a quiz that directly asks 
+questions to the contents of the book, or a default quiz is given with more general questions.
+The user info panel gives per device information, since it wouldn't be as easy to track ones 
+reading habits if they signed in under a different account and didn't track that information.
+With all that in mind, you can understand that this app just makes it a bit easier to know if your 
+child or whoever you're supervising is doing the reading you assign them.
 
-Choose a book, and you continue on to reading it. On the book reading screen there is a timer with 
-a start, pause and reset button. The timer, I believe, is a crucial tracking method in understanding
-somebody's reading comprehension. Of course, this timer could be easily manipulated, and even trying
-to implement methods to prevent such manipulation wouldn't solve this problem. Still a crucial 
-functionality to this app.
+By the way, I call them books, but books aren't the only type of media that can be presented in
+this app. There could also be magazines, articles, textbooks, or even short stories. All of which 
+are equally important.
 
-After reading the book, the user makes their way to the quiz. This quiz usually contains specific
-questions to the contents of the book. Right now those answers aren't meant to be manually inputed
-in the app, instead answers are to be given to those who are supervising that user.
-Future implementations of the app might allow for inputed answers for various reasons, but at the 
-moment, not necessary. Of course, there could be books that don't have associated quizzes, where 
-instead the person will be directed to a default quiz which asks generalized questions. There's a 
-done button when the user is done taking the quiz.
+Here's a few aspects of the app I currently would love to have changed in order of most important:
+1. In the info section of the app, there's a list view to show which users read which book and what
+times they got on those books. I would like the app to actually show the name of the user instead of 
+the user's ID for future implementations. 
+2. I would also like it if once you were at the home screen that pressing the back button kicked you
+out of the app completely. 
+3. Also, the timer in the uer info screen be formatted correctly to reflect both minutes and seconds
+instead of just seconds. 
+4. Lastly, I would like it if the app, design wise, fit more closely to Google's Material Design 
+standards.
 
-At any moment of the app, instead of the sign in screen, the user can go to the user info screen.
-This screen provides information on the user such as display name and email. Future implementations
-will allow the user to see what books they've read, and how long it took them to read that book.
-Note that it is possible for the same user to have multiples of the same book read with 
-different times.
+The minimum API level for this app is 21, however, the app has been tested to work on APIs 24 - 28.
+The main language is English, and the current required orientation is portrait mode. In order to
+successfully sign into the app, a working internet connection is required.
+
+Here are the current implementations needed to work for this app to function.
+```
+implementation 'android.arch.persistence.room:runtime:1.1.1'
+implementation 'com.google.android.gms:play-services-auth:16.0.1'
+implementation 'com.android.support:support-media-compat:28.0.0'
+implementation 'com.android.support:support-v4:28.0.0'
+```
+
+The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
+only API this app consumes.
