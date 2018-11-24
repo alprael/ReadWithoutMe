@@ -70,3 +70,6 @@ only API this app consumes.
 
 ## Physical Entity Relationship Diagram
 ![](ReadWithoutMeERD.png "Entity Relationship Diagram")
+
+## Licenses
+This project is Licensed under the Apache License 2.0. Here's the [link](https://github.com/alprael/ReadWithoutMe/blob/master/LICENSE).
