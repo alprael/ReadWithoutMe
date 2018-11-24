@@ -25,7 +25,8 @@ By the way, I call them books, but books aren't the only type of media that can 
 this app. There could also be magazines, articles, textbooks, or even short stories. All of which 
 are equally important.
 
-Here's a few aspects of the app I currently would love to have changed in order of most important:
+Here's a few aspects of the app I would love to have changed for future implementations. Here they
+ are in order of most important:
 1. In the info section of the app, there's a list view to show which users read which book and what
 times they got on those books. I would like the app to actually show the name of the user instead of 
 the user's ID for future implementations. 
@@ -33,8 +34,9 @@ the user's ID for future implementations.
 out of the app completely. 
 3. Also, the timer in the uer info screen be formatted correctly to reflect both minutes and seconds
 instead of just seconds. 
-4. Lastly, I would like it if the app, design wise, fit more closely to Google's Material Design 
+4. I would like it if the app, design wise, fit more closely to Google's Material Design 
 standards.
+5. Add an API to populate the app with various books, articles, and magazines.
 
 The minimum API level for this app is 21, however, the app has been tested to work on APIs 24 - 28.
 The main language is English, and the current required orientation is portrait mode. In order to
