@@ -52,4 +52,4 @@ The last 3 implementations above are mostly for the use of Google Sign In. Googl
 only API this app consumes.
 
 ## Wire Frames
-![](images ReadWithoutMeWireFrame.png "Wire Frames")
+![](ReadWithoutMeWireFrame.png "Wire Frames")
