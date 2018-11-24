@@ -50,3 +50,6 @@ implementation 'com.android.support:support-v4:28.0.0'
 
 The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
 only API this app consumes.
+
+## Wire Frames
+![](images ReadWithoutMeWireFrame.png "Wire Frames")
