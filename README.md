@@ -51,6 +51,10 @@ implementation 'com.android.support:support-v4:28.0.0'
 The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
 only API this app consumes.
 
+## User Stories
+As a mother I want to be able to keep track of my children's reading habits as I assign while I cook dinner.
+
+
 ## Wire Frames
 ![](ReadWithoutMeWireFrame.png "Wire Frames")
 
