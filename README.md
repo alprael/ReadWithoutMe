@@ -49,7 +49,9 @@ implementation 'android.arch.persistence.room:runtime:1.1.1'
 implementation 'com.google.android.gms:play-services-auth:16.0.1'
 implementation 'com.android.support:support-media-compat:28.0.0'
 implementation 'com.android.support:support-v4:28.0.0'
+annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 ```
+The first implementation and the annotationProcessor are for the use of the Room Persistence Library.
 The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
 only API this app consumes.
 
@@ -64,6 +66,8 @@ javaCompileOptions {
             }
         }
  ```
+ Add this snippet directly under the TestInstrumentationRunner in the app module of the build.gradle file.
+ This compile option gives a path location for room to store it's 1.json file.
  
 ## User Stories
 * As a parent I want to be able to keep track of my children's reading while I cook dinner.
