@@ -101,3 +101,6 @@ Here's a link to my [RWM.sql](https://github.com/alprael/ReadWithoutMe/blob/mast
 
 ## Java Documentation
 Here's a link to my [Java Doc](https://github.com/alprael/ReadWithoutMe/tree/master/javaDoc) file.
+
+## Links to both Build Instructions and Basic User Instructions
+Here's a link to the [Build Instructions](https://github.com/alprael/ReadWithoutMe/blob/master/BuildInstructions.md).
