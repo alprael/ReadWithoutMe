@@ -133,7 +133,7 @@ public abstract class RWMDatabase extends RoomDatabase {
       book1.setFileName("haHa.html");
       book1.setAuthorName("Alex Rael");
       book1.setBookName("HA HA");
-      book1.setResImage(R.drawable.book_img_192);
+      book1.setResImage(R.drawable.ha_ha);
       bookDao.insert(book1);
 
       forgetInstance(context);

@@ -97,7 +97,7 @@ public class QuizFragment extends Fragment {
     @Override
     protected void onPostExecute(String s) {
       if (s == null) {
-        quizText.loadUrl("file:///android_asset/quizzes/noQuiz404.html");
+        quizText.loadUrl("file:///android_asset/quizzes/defaultQuiz.html");
       } else {
         quizText.loadUrl("file:///android_asset/quizzes/" + s);
         super.onPostExecute(s);
