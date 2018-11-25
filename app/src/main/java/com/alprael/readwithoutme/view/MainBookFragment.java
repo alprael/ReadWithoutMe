@@ -45,6 +45,8 @@ public class MainBookFragment extends Fragment {
     return view;
   }
 
+
+
   private void initGrid() {
     gridView = view.findViewById(R.id.main_book_fragment_gv);
     final GridAdapter adapter = new GridAdapter(getContext(), listBook);

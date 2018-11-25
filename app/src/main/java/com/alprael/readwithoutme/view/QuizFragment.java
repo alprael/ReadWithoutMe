@@ -40,7 +40,7 @@ public class QuizFragment extends Fragment {
     assert getArguments() != null;
     new QueryTask().execute(getArguments().getLong("quiz_id"));
     timerText = view.findViewById(R.id.quiz_fragment_timer_text);
-    timerText.setText(String.format("Time: %s", bundle.getLong(getString(R.string.seconds_key))));
+    timerText.setText(String.format("Time: %s ", bundle.getLong(getString(R.string.seconds_key))));
   }
 
   private void goToHome() {
