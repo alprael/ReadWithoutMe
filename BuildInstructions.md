@@ -9,6 +9,8 @@ Here's a link to clone the repository from Github:
 ```
 git@github.com:alprael/ReadWithoutMe.git
 ```
+You could clone the repo from the command line, or you could clone it directly in IntelliJ.
+Instructions below.
 ## Building with IntelliJ
 This Project was built on IntelliJ. Here's some quick instructions to get started.
 1. Open IntelliJ.
