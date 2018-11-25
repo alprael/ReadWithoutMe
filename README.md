@@ -100,7 +100,7 @@ to the Google Sign In API resource page.
 Here's a link to my [RWM.sql](https://github.com/alprael/ReadWithoutMe/blob/master/RWM.sql) file.
 
 ## Java Documentation
-Here's a link to my [Java Doc](https://github.com/alprael/ReadWithoutMe/tree/master/javaDoc) file.
+Here's a link to my Java [docs](https://github.com/alprael/ReadWithoutMe/tree/master/docs) file.
 
 ## Links to both Build and Basic User Instructions
 Here's a link to the [Build Instructions](https://github.com/alprael/ReadWithoutMe/blob/master/BuildInstructions.md) file.
