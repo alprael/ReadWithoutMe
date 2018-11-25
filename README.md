@@ -50,6 +50,9 @@ implementation 'com.google.android.gms:play-services-auth:16.0.1'
 implementation 'com.android.support:support-media-compat:28.0.0'
 implementation 'com.android.support:support-v4:28.0.0'
 ```
+The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
+only API this app consumes.
+
 Here are the added Java Compile Options needed:
 ```
 javaCompileOptions {
@@ -61,10 +64,7 @@ javaCompileOptions {
             }
         }
  ```
-        
-The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
-only API this app consumes.
-
+ 
 ## User Stories
 * As a parent I want to be able to keep track of my children's reading while I cook dinner.
   * As a parent I want to able to be able to see what books my children have read, and how long it 
