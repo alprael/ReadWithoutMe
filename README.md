@@ -1,4 +1,4 @@
-![](https://github.com/alprael/ReadWithoutMe/blob/master/app/src/main/res/drawable/rwm_logo.png "Read Without Me Logo")
+<img alt="Read Without Me Logo" src="https://rawcdn.githack.com/alprael/ReadWithoutMe/15e90b2ef2e19978984a0c4aed8556d0ca0c77be/app/src/main/res/drawable/rwm_logo.png">
 
 Read Without Me is a nice little Android reading app with the basic function of keeping track of
 your children's reading behavior when you're not looking, and with a complex function of keeping track
