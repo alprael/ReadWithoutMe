@@ -42,7 +42,7 @@ The minimum API level for this app is 21, however, the app has been tested to wo
 The main language is English, and the current required orientation is portrait mode. In order to
 successfully sign into the app, a working internet connection is required.
 
-Here are the current implementations needed to work for this app to function.
+Here are the added implementations needed for this app to function.
 ```
 implementation 'android.arch.persistence.room:runtime:1.1.1'
 implementation 'com.google.android.gms:play-services-auth:16.0.1'
