@@ -28,7 +28,7 @@ implementation 'com.android.support:support-media-compat:28.0.0'
 implementation 'com.android.support:support-v4:28.0.0'
 annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 ```
-Also make sure that this Java Compile Options are also included:
+Also make sure that this Java Compile Option are also included:
 ```
 javaCompileOptions {
             annotationProcessorOptions {
@@ -41,15 +41,16 @@ javaCompileOptions {
  ```
  Which should be inserted directly under the TestInstrumentationRunner.
  
- With these instructions, you should be able to successfully build in InelliJ.
+ With these instructions, you should be able to successfully build on InelliJ.
  
  Keep in mind that this app runs on a minimum API level of 21, but has been tested and works on API
  levels 24 - 28.
  
  ## Didn't Work?
- 
- 1. Make sure you have an active internet connection.
- 2. Make sure the above implementations and java compile options are included.
- 3. Make sure you successfully sync your libraries from the above implementations.
- 4. Try invalidating the cache and restarting.
- 5. Try rebuilding the project.
+ 1. Make sure JDK 8 is installed.
+ 2. Make sure java is available.
+ 3. Make sure you have an active internet connection.
+ 4. Make sure the above implementations and java compile options are included.
+ 5. Make sure you successfully sync your libraries from the above implementations.
+ 6. Try invalidating the cache and restarting.
+ 7. Try rebuilding the project.
