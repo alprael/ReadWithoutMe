@@ -46,6 +46,14 @@ public class GridAdapter extends ArrayAdapter<Book> {
     return position;
   }
 
+  /**
+   * Grabs data from the Book entity and set them into the appropriate text and image views. The
+   * data that is grabbed is the book name and resource image for the book cover.
+   * @param position
+   * @param convertView
+   * @param parent
+   * @return
+   */
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     LayoutInflater inflater;

@@ -83,6 +83,12 @@ public class UserInfoFragment extends Fragment {
 
   private class QueryTask extends AsyncTask<Void, Void, User> {
 
+    /**
+     * Creates an instance of the Read Without Me database, grabs a query from the User Dao and also
+     * grabs the ID of the current user.
+     * @param voids
+     * @return
+     */
     @Override
     protected User doInBackground(Void... voids) {
       User user = RWMDatabase.getInstance(getContext()).getUserDao().selectAllUser(
@@ -90,6 +96,10 @@ public class UserInfoFragment extends Fragment {
       return user;
     }
 
+    /**
+     * The textView is set to the user name and email of the current user.
+     * @param user
+     */
     @Override
     protected void onPostExecute(User user) {
       userInfoDisplayName.setText(user.getUserName());
@@ -99,11 +109,21 @@ public class UserInfoFragment extends Fragment {
 
   private class BooksReadTask extends AsyncTask<Void, Void, List<BooksRead>> {
 
+    /**
+     * Creates and instance of the Read Without Me database and grabs a query from the
+     * BooksRead Dao.
+     * @param voids
+     * @return
+     */
     @Override
     protected List<BooksRead> doInBackground(Void... voids) {
       return RWMDatabase.getInstance(getContext()).getBooksReadDao().selectAll();
     }
 
+    /**
+     * Initializes the listView that shows a list data from the BooksRead entity.
+     * @param booksReads
+     */
     @Override
     protected void onPostExecute(List<BooksRead> booksReads) {
       listBooksRead = booksReads;

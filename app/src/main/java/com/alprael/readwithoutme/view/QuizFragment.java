@@ -79,15 +79,25 @@ public class QuizFragment extends Fragment {
 
   private class QueryTask extends AsyncTask<Long, Void, String> {
 
+    /**
+     * Creates the Read Without Me database and grabs a query for file name from the Quiz Dao.
+     * @param longs
+     * @return
+     */
     @Override
     protected String doInBackground(Long... longs) {
       return RWMDatabase.getInstance(getContext()).getQuizDao().selectFileName(longs[0]);
     }
 
+    /**
+     * Uses the query to load the file name into the webView. If a quiz doesn't exist for the
+     * current book, a default quiz is given instead.
+     * @param s
+     */
     @Override
     protected void onPostExecute(String s) {
       if (s == null) {
-        quizText.loadUrl("file:///android_asset/images/noQuiz404.html");
+        quizText.loadUrl("file:///android_asset/quizzes/noQuiz404.html");
       } else {
         quizText.loadUrl("file:///android_asset/quizzes/" + s);
         super.onPostExecute(s);

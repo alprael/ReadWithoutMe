@@ -105,6 +105,11 @@ public abstract class RWMDatabase extends RoomDatabase {
       this.context = context;
     }
 
+    /**
+     * Grabs from the various Dao's and inserts data into the appropriate entities.
+     * @param voids
+     * @return
+     */
     @Override
     protected Void doInBackground(Void... voids) {
       RWMDatabase db = getInstance(context);

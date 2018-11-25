@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="-bootclasspath C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar;C:/android/sdk/platforms/android-21/android.jar -link https://docs.oracle.com/javase/8/docs/api/ -linkoffline https://developer.android.com/reference C:/android/sdk/docs/reference -link https://developers.google.com/identity/sign-in/android/" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/javaDoc" />
+    <option name="OTHER_OPTIONS" value="-bootclasspath &quot;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar&quot;;C:\android\sdk\platforms\android-21\android.jar -link https:\\docs.oracle.com\javase\8\docs\api\ -linkoffline https:\\developer.android.com\reference C:\android\sdk\docs\reference -link https:\\developers.google.com\android\reference\com\google\android\gms\auth\api\signin\package-summary" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />

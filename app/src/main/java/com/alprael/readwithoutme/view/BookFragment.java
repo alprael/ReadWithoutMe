@@ -169,12 +169,21 @@ public class BookFragment extends Fragment {
 
   private class QueryTask extends AsyncTask<Long, Void, Book> {
 
+    /**
+     * Creates an instance of the Read Without Me database and grabs a Book Dao query.
+     * @param longs
+     * @return
+     */
     @Override
     protected Book doInBackground(Long... longs) {
       return RWMDatabase.getInstance(getContext()).getBookDao().selectBook(longs[0]);
     }
 
 
+    /**
+     * Loads a book into the webView according do it's file name in the Book entity.
+     * @param b
+     */
     @Override
     protected void onPostExecute(Book b) {
       webView.loadUrl("file:///android_asset/books/" + b.getFileName());
@@ -184,6 +193,12 @@ public class BookFragment extends Fragment {
 
   private class BookTask extends AsyncTask<BooksRead, Void, Long> {
 
+    /**
+     * Creates an instance of the Read Without Me database, grabs a query from the BooksRead Dao,
+     * and inserts data into the BooksRead entity.
+     * @param booksReads
+     * @return
+     */
     @Override
     protected Long doInBackground(BooksRead... booksReads) {
       RWMDatabase db = RWMDatabase.getInstance(getContext());
@@ -195,19 +210,6 @@ public class BookFragment extends Fragment {
       return null;
     }
 
-  }
-
-  private class QuizTask extends AsyncTask<Void, Void, List<Quiz>> {
-
-    @Override
-    protected List<Quiz> doInBackground(Void... voids) {
-      return RWMDatabase.getInstance(getContext()).getQuizDao().selectAll();
-    }
-
-    @Override
-    protected void onPostExecute(List<Quiz> quizzes) {
-      listQuiz = quizzes;
-    }
   }
 
 }

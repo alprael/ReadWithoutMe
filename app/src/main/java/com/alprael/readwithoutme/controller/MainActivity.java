@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
   private class BookTask extends AsyncTask<Void, Void, Void> {
 
+    /**
+     * Creates an instance of the Read Without Me database to build it.
+     * @param voids
+     * @return
+     */
     @Override
     protected Void doInBackground(Void... voids) {
       BookDao bookDao = rWMDatabase.getBookDao();

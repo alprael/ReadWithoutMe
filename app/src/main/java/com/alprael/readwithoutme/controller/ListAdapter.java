@@ -10,14 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.alprael.readwithoutme.R;
 import com.alprael.readwithoutme.model.entity.BooksRead;
-import com.alprael.readwithoutme.model.entity.User;
 import java.util.List;
 
+/**
+ * This class defines and Array Adapter in the form of a list view in the user info section of the
+ * app. It displays the user ID, book name, and book read time from the BooksRead entity and updates
+ * accordingly as more data is inserted.
+ */
 public class ListAdapter extends ArrayAdapter<BooksRead> {
 
   private List<BooksRead> listBooksRead;
   private TextView bookTitle, bookTime, user;
 
+  /**
+   * Public constructor.
+   * @param context
+   * @param listBooksRead
+   */
   public ListAdapter(Context context, List<BooksRead> listBooksRead) {
     super(context, 0);
     this.listBooksRead = listBooksRead;
@@ -41,6 +50,14 @@ public class ListAdapter extends ArrayAdapter<BooksRead> {
     return position;
   }
 
+  /**
+   * Grabs data from the BooksRead entity and sets the data in the appropriate view. The data that's
+   * grabbed is the book name, user ID, and the book read time.
+   * @param position
+   * @param convertView
+   * @param parent
+   * @return
+   */
   @NonNull
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {

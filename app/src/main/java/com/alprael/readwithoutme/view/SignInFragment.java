@@ -167,6 +167,12 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
   private class QueryTask extends AsyncTask<String, Void, Long> {
 
 
+    /**
+     * Creates an instance of the Read Without Me database, grabs a query from the User Dao, and
+     * inserts the email and user name data into the User entity.
+     * @param strings
+     * @return
+     */
     @Override
     protected Long doInBackground(String... strings) {
       User user = RWMDatabase.getInstance(getContext()).getUserDao().selectEmail(strings[0]);
@@ -179,6 +185,10 @@ public class SignInFragment extends Fragment implements View.OnClickListener,
       return user.getId();
     }
 
+    /**
+     * Sets an ID for the user when the email and user name are successfully inserted.
+     * @param aLong
+     */
     @Override
     protected void onPostExecute(Long aLong) {
       ((MainActivity) getActivity()).setUserId(aLong);
