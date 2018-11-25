@@ -25,23 +25,16 @@ By the way, I call them books, but books aren't the only type of media that can 
 this app. There could also be magazines, articles, textbooks, or even short stories. All of which 
 are equally important.
 
-Here's a few aspects of the app I would love to have changed for future implementations. Here they
- are in order of most important:
-1. In the info section of the app, there's a list view to show which users read which book and what
-times they got on those books. I would like the app to actually show the name of the user instead of 
-the user's ID for future implementations. 
-2. I would also like it if once you were at the home screen that pressing the back button kicked you
-out of the app completely. 
-3. Also, the timer in the uer info screen be formatted correctly to reflect both minutes and seconds
-instead of just seconds. 
-4. I would like it if the app, design wise, fit more closely to Google's Material Design 
-standards.
-5. Add an API to populate the app with various books, articles, and magazines.
-
 The minimum API level for this app is 21, however, the app has been tested to work on APIs 24 - 28.
 The main emulator used for the above tests was the Nexus 5X. The main language used is English, and 
 the current required orientation is portrait mode. In order to successfully sign into the app, a 
 working internet connection is required.
+
+As far as bugs go, I've already fixed a few of them, except one that occurs during the sign in
+process. I've noticed, on occasion, Google sign in incorrectly displays the user name of the user
+signing in. Once it incorrectly displays, pressing the confirm button from there would crash the app.
+It has a problem inserting that data into the database as a new user. I say on occasion because it
+might happen when you first run it on any api, but after that first initial run, it'll work fine.
 
 Here are the added implementations needed:
 ```
@@ -107,3 +100,27 @@ Here's a link to my Java [docs](https://github.com/alprael/ReadWithoutMe/tree/ma
 Here's a link to the [Build Instructions](https://github.com/alprael/ReadWithoutMe/blob/master/BuildInstructions.md) file.
 
 Here's a link to the [Basic User Instructions](https://github.com/alprael/ReadWithoutMe/blob/master/BasicUserInstructions.md) file.
+
+## Future Implementations
+Here's a few aspects of the app I would love to have changed or added for future implementations. Here they
+are in order of most important:
+1. In the info section of the app, there's a list view which shows users which book they've read and what
+times they got on those books. I would like the app to actually show the name of the user instead of 
+the user's ID in that list view.
+2. I would also like it if once you were at the home screen that pressing the back button kicked you
+out of the app completely. 
+3. Also, the timer in the user info and quiz screen be formatted correctly to reflect both minutes and seconds
+instead of just seconds. 
+4. I would like it if the app, design wise, fit more closely to Google's Material Design 
+standards.
+5. Add an API to populate the app with various books, articles, and magazines (possible Amazon Kindle
+API or Google Books API.)
+6. Would like to list view in the user info screen to update upwards instead of downwards so that
+the user doesn't have to scroll down to the bottom of the list to see the most recent books
+read, or reset that list view.
+7. Allow quiz questions to have inputed answers that are saved and could be accessed later.
+
+## Thank You
+Thank you for reading up to this point, and taking in all the information. I truly do believe this
+app I've created is a useful tool to making someones life a little bit easier. I hope you find equally
+interesting and useful as I. Enjoy and have a wonderful day.
