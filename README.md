@@ -43,14 +43,25 @@ The main emulator used for the above tests was the Nexus 5X. The main language u
 the current required orientation is portrait mode. In order to successfully sign into the app, a 
 working internet connection is required.
 
-Here are the added implementations needed.
+Here are the added implementations needed:
 ```
 implementation 'android.arch.persistence.room:runtime:1.1.1'
 implementation 'com.google.android.gms:play-services-auth:16.0.1'
 implementation 'com.android.support:support-media-compat:28.0.0'
 implementation 'com.android.support:support-v4:28.0.0'
 ```
-
+Here are the added Java Compile Options needed:
+```
+javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+            dataBinding {
+                enabled = true
+            }
+        }
+ ```
+        
 The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
 only API this app consumes.
 
