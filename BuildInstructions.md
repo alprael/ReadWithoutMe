@@ -7,6 +7,9 @@ This app is developed for Android, Android builds on Java 8 so make sure you hav
 link to download [JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 This project won't work on previous versions of the JDK, nor the latest versions ie (JDK 9, 10, nor 7).
 
+Make sure you've configured a [project](https://developers.google.com/identity/sign-in/android/start-integrating) 
+with Google Sign API to get their credentials file. It will be needed.
+
 Here's a link to clone the repository from Github:
 ```
 git@github.com:alprael/ReadWithoutMe.git
@@ -50,7 +53,8 @@ javaCompileOptions {
  1. Make sure JDK 8 is installed.
  2. Make sure java is available.
  3. Make sure you have an active internet connection.
- 4. Make sure the above implementations and java compile options are included.
- 5. Make sure you successfully sync your libraries from the above implementations.
- 6. Try invalidating the cache and restarting.
- 7. Try rebuilding the project.
+ 4. Make sure you've created and downloaded a Google Sign In credentials file from the site above.
+ 5. Make sure the above implementations and java compile options are included.
+ 6. Make sure you successfully sync your libraries from the above implementations.
+ 7. Try invalidating the cache and restarting.
+ 8. Try rebuilding the project.

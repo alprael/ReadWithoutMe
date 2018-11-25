@@ -53,7 +53,8 @@ annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 ```
 The first implementation and the annotationProcessor are for the use of the Room Persistence Library.
 The last 3 implementations above are mostly for the use of Google Sign In. Google Sign In is the
-only API this app consumes.
+only API this app consumes. You will need a [Google Sign In Credentials](https://developers.google.com/identity/sign-in/android/start-integrating)
+file if you're going to successfully build and run the app. You can configure one that he link above.
 
 Here are the added Java Compile Options needed:
 ```
@@ -102,7 +103,7 @@ Here's a link to my [RWM.sql](https://github.com/alprael/ReadWithoutMe/blob/mast
 ## Java Documentation
 Here's a link to my Java [docs](https://github.com/alprael/ReadWithoutMe/tree/master/docs) file.
 
-## Links to both Build and Basic User Instructions
+## Build and Basic User Instructions
 Here's a link to the [Build Instructions](https://github.com/alprael/ReadWithoutMe/blob/master/BuildInstructions.md) file.
 
 Here's a link to the [Basic User Instructions](https://github.com/alprael/ReadWithoutMe/blob/master/BasicUserInstructions.md) file.
