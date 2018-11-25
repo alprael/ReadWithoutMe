@@ -39,10 +39,11 @@ standards.
 5. Add an API to populate the app with various books, articles, and magazines.
 
 The minimum API level for this app is 21, however, the app has been tested to work on APIs 24 - 28.
-The main language is English, and the current required orientation is portrait mode. In order to
-successfully sign into the app, a working internet connection is required.
+The main emulator used for the above tests was the Nexus 5X. The main language used is English, and 
+the current required orientation is portrait mode. In order to successfully sign into the app, a 
+working internet connection is required.
 
-Here are the current implementations needed to work for this app to function.
+Here are the added implementations needed.
 ```
 implementation 'android.arch.persistence.room:runtime:1.1.1'
 implementation 'com.google.android.gms:play-services-auth:16.0.1'
@@ -70,3 +71,11 @@ only API this app consumes.
 
 ## Physical Entity Relationship Diagram
 ![](ReadWithoutMeERD.png "Entity Relationship Diagram")
+
+## Licenses
+This project is Licensed under the [Apache License 2.0l](https://github.com/alprael/ReadWithoutMe/blob/master/LICENSE).
+
+Google Sign In API for Android is implemented in this app and is licensed under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/), and code samples licensed under the [Apache 2.0 Licenser](http://www.apache.org/licenses/LICENSE-2.0). Here's a [link](https://developers.google.com/android/reference/com/google/android/gms/auth/api/signin/package-summary) to the Google Sign In API resource page.
+
+## Data Definition Language
+Here's a link to my [RWM.sql](https://github.com/alprael/ReadWithoutMe/blob/master/RWM.sql) file.
