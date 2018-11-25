@@ -1,4 +1,4 @@
-# Read Without Me
+[](https://github.com/alprael/ReadWithoutMe/blob/master/app/src/main/res/drawable/rwm_logo.png "Read Without Me Logo")
 Read Without Me is a nice little Android reading app with the basic function of keeping track of
 your children's reading behavior when you're not looking, and with a complex function of keeping track
 of people's reading behavior and reading comprehension. Allow me to start off with the reasoning 
