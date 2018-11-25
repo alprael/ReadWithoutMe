@@ -39,8 +39,9 @@ standards.
 5. Add an API to populate the app with various books, articles, and magazines.
 
 The minimum API level for this app is 21, however, the app has been tested to work on APIs 24 - 28.
-The main language is English, and the current required orientation is portrait mode. In order to
-successfully sign into the app, a working internet connection is required.
+The main emulator used for the above tests was the Nexus 5X. The main language used is English, and 
+the current required orientation is portrait mode. In order to successfully sign into the app, a 
+working internet connection is required.
 
 Here are the added implementations needed.
 ```
