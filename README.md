@@ -79,3 +79,6 @@ Google Sign In API for Android is implemented in this app and is licensed under 
 
 ## Data Definition Language
 Here's a link to my [RWM.sql](https://github.com/alprael/ReadWithoutMe/blob/master/RWM.sql) file.
+
+## Java Documentation
+Here's a link to my [Java Doc](https://github.com/alprael/ReadWithoutMe/tree/master/javaDoc) file.
