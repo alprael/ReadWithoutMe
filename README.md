@@ -90,7 +90,11 @@ javaCompileOptions {
 ## Licenses
 This project is Licensed under the [Apache License 2.0](https://github.com/alprael/ReadWithoutMe/blob/master/LICENSE).
 
-Google Sign In API for Android is implemented in this app and is licensed under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/), and code samples licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Here's a [link](https://developers.google.com/android/reference/com/google/android/gms/auth/api/signin/package-summary) to the Google Sign In API resource page.
+Google Sign In API for Android is implemented in this app and is licensed under the 
+[Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/), and code 
+samples licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Here's
+a [link](https://developers.google.com/android/reference/com/google/android/gms/auth/api/signin/package-summary) 
+to the Google Sign In API resource page.
 
 ## Data Definition Language
 Here's a link to my [RWM.sql](https://github.com/alprael/ReadWithoutMe/blob/master/RWM.sql) file.
