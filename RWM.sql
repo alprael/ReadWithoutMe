@@ -40,4 +40,4 @@ CREATE TABLE IF NOT EXISTS `room_master_table` (
   `identity_hash`   TEXT),
                     INSERT OR REPLACE INTO `room_master_table` (
                     `id`,`identity_hash`)
-                    VALUES              (`42`, `79c9f4e9d26db112410d07faf7d18774`);
+                    VALUES (`42`, `79c9f4e9d26db112410d07faf7d18774`);
