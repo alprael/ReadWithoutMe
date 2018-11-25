@@ -1,9 +1,11 @@
 # Build Instructions
 Hello, and thank you for the taking the time to check out and or work on my app.
 
-Android, and this app, builds on Java 8, make sure you have it downloaded. Here's a link to download 
-[JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
-This project won't work on past versions of the JDK, nor the latest versions ie (JDK 9, 10, nor 7).
+Below are specific instructions to clone and build this project. Enjoy.
+
+This app is developed for Android, Android builds on Java 8 so make sure you have it downloaded. Here's a
+link to download [JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+This project won't work on previous versions of the JDK, nor the latest versions ie (JDK 9, 10, nor 7).
 
 Here's a link to clone the repository from Github:
 ```
