@@ -136,6 +136,14 @@ public abstract class RWMDatabase extends RoomDatabase {
       book1.setResImage(R.drawable.ha_ha);
       bookDao.insert(book1);
 
+      BookDao bookDao2 = db.getBookDao();
+      Book book2 = new Book();
+      book2.setBookName("After the Story");
+      book2.setAuthorName("Alex Rael");
+      book2.setFileName("afterTheStory.html");
+      book2.setResImage(R.drawable.after_the_story);
+      bookDao.insert(book2);
+
       forgetInstance(context);
       return null;
     }
