@@ -1,5 +1,17 @@
 <img alt="Read Without Me Logo" src="https://rawcdn.githack.com/alprael/ReadWithoutMe/15e90b2ef2e19978984a0c4aed8556d0ca0c77be/app/src/main/res/drawable/rwm_logo.png">
 
+# Table of Contents:
+1. [Technical Information](#technical-information)
+2. [User Stories](#user-stories)
+3. [Wire Frames](#wire-frames)
+4. [Physical Entity Relationship Diagram](#physical-entity-relationship-diagram)
+5. [Licenses](#licenses)
+6. [Data Definition Language](#data-definition-language)
+7. [Java Documentation](#java-documentation)
+8. [Build and Basic User Instructions](#build-and-basic-user-instructions)
+9. [Future Implementations](#future-implementations)
+10. [Thank You](#thank-you)
+
 Read Without Me is a nice little Android reading app with the basic function of keeping track of
 your children's reading behavior when you're not looking, and with a complex function of keeping track
 of people's reading behavior and reading comprehension. Allow me to start off with the reasoning 
