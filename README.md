@@ -37,7 +37,7 @@ process. I've noticed, on occasion, Google sign in incorrectly displays the user
 signing in. Once it incorrectly displays, pressing the confirm button will crash the app.
 It has a problem inserting that data into the database as a new user. I say on occasion because it
 might happen when you first run it on any api, but after that first initial run, it'll work fine.
-Refer to the [Future Implementations](#futureimplementations) tab for more information.
+Refer to the [Future Implementations](#future-implementations) tab for more information.
 
 Here are the added implementations and annotationProcessor needed:
 ```
